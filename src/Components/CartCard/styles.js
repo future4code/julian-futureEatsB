@@ -5,7 +5,7 @@ export const CartCardContainer = styled.div`
   height: 20vh;
   border: grey 1px solid;
   width: 90%;
-  margin: 1vh auto;
+  margin: 1.25vh auto;
   border-radius: 8px;
   display: flex;
 `;
