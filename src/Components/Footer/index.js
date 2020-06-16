@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Tabs, Tab } from '@material-ui/core';
 import { FooterContainer } from './styles';
-import styled from 'styled-components';
 
 import home from "../../img/home.svg";
 import homeSelected from "../../img/home-selected.svg";
@@ -11,13 +10,6 @@ import carrinhoSelected from '../../img/carrinho-selected.svg';
 import perfil from '../../img/perfil.svg';
 import perfilSelected from '../../img/perfil-selected.svg';
 
-const TabContent = styled.div`
-    display: ${props => props.value !== props.index ? "hidden" : "flex"};
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    min-height: 100vh;
-`
 
 const Footer = (props) => {
     const [ homeTabImage, setHomeTabImage ] = useState(home);
