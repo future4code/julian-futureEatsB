@@ -8,7 +8,6 @@ import FeedCard from "../../Components/FeedCard";
 const Login = (props) => {
   return (
     <div className="telatoda">
-      <FeedCard />
       <CartCard />
     </div>
   );

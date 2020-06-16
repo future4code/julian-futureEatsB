@@ -8,6 +8,9 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import SearchIcon from '../../img/procurar.svg';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 
 const MyTheme = createMuiTheme({
@@ -20,11 +23,16 @@ const MyTheme = createMuiTheme({
   }
 })
 
+const AppBarStyled = styled(AppBar)`
+    width: 100vw;
+    height: 42px;
+    padding-left:16px;
+`
+
 
 const Home = (props) => {
   let history = useHistory();
-  const [tiposRestaurantes, setTiposRestaurantes] = useState([]);
-  const [tipoSelecionado, setTipoSelecionado] = useState('Burger');
+  const [tipoSelecionado, setTipoSelecionado] = useState('todos');
   const [restaurantes, setRestaurantes] = useState([
     {
       "id": "51",
@@ -32,7 +40,7 @@ const Home = (props) => {
       "address": "Travessa Reginaldo Pereira, 130 - Ibitinga",
       "logoUrl": "https://paginaamarela.com.br/storage/categorias/lanchonetes-20200327190257-paginaamarela.jpg",
       "deliveryTime": 45,
-      "category": "Burger",
+      "category": "Hamburguer",
       "name": "CowboyBurger",
       "shipping": 13,
     },
@@ -142,16 +150,30 @@ const Home = (props) => {
     history.push('/busca')
   }
 
-  const restaurantesNaTela = restaurantes.filter((restaurante) => {
-      return restaurante.category === tipoSelecionado;
+  const handleChange = (event, value) => {
+    tipoSelecionado === value ? setTipoSelecionado('todos') : setTipoSelecionado(value)
+  };
+  
+  
+  const restaurantesFiltrados = restaurantes.filter((restaurante) => {
+    return restaurante.category === tipoSelecionado;
     }).map((restaurante) =>{
       return <CardRestaurant nome={restaurante.name} demora={restaurante.deliveryTime} frete={restaurante.shipping}/>
     })
-
-  const listaTipos = restaurantes.map((restaurante)=>{
-    return 
+  
+  const restaurantesTotais = restaurantes.map((restaurante) =>{
+      return <CardRestaurant nome={restaurante.name} demora={restaurante.deliveryTime} frete={restaurante.shipping}/>
+    })
+  
+  const listaTipos = restaurantes.map((restaurante) => {
+    return restaurante.category 
+  }).filter(function (elem, index, self) {
+    return index === self.indexOf(elem); /*Retira os duplicados */
+  }).map((restaurant) =>{
+    return <Tab label={restaurant} value={restaurant} key={restaurant} />
   })
 
+  
   return (
     <ThemeProvider theme={MyTheme} className='telatoda'>
       <section>
@@ -164,10 +186,21 @@ const Home = (props) => {
       </section>  
       
       <section>
-        {listaTipos}
+        <AppBarStyled position="static">
+          <Tabs
+              onChange={handleChange}
+              indicatorColor="secondary"
+              textColor="primary"
+              variant="scrollable"
+              scrollButtons="auto"
+          >
+            {listaTipos}
+          </Tabs>
+        </AppBarStyled>
+
       </section>
       <section id="lista-restaurantes">
-        {restaurantesNaTela}
+        {tipoSelecionado === 'todos' ? restaurantesTotais : restaurantesFiltrados}
       </section>  
      
     </ThemeProvider>
