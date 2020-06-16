@@ -6,13 +6,15 @@ export const FeedCardContainer = styled.div`
   width: 90%;
   margin: auto;
   height: 20vh;
-  border-radius: 10px;
+  border-radius: 8px;
 `;
 
 export const ProductImg = styled.img`
   width: 100%;
   height: 60%;
-  object-fit: contain;
+  object-fit: fill;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
 `;
 
 export const StoreName = styled(Typography)`
