@@ -3,23 +3,22 @@ import { Typography } from "@material-ui/core";
 
 export const FeedCardContainer = styled.div`
   border: solid 1px #b8b8b8;
-  width: 328px;
-  margin: 8px 16px;
-  height: 188px;
+  width: 92%;
+  margin: 1vh auto;
+  height: 20vh;
   border-radius: 8px;
 `;
 
 export const ProductImg = styled.img`
-  width: 328px;
-  height: 120px;
-  object-fit: contain;
+  width: 100%;
+  height: 60%;
+  object-fit: fill;
 `;
 
 export const StoreName = styled(Typography)`
-  width: 296px;
   height: 18px;
   font-family: Roboto;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -32,6 +31,8 @@ export const TextContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  width: 100%;
+  gap: 2vh;
 `;
 
 export const OrderDetails = styled.span`
