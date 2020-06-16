@@ -7,7 +7,7 @@ export const HeaderContainer = styled.header`
     width: 100vw;
     height: 8vh;
     position: relative;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 `
 
 export const BackButtonContainer = styled.div`
