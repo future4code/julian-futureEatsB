@@ -29,6 +29,12 @@ const Abas = withStyles({
   },
 })(Tabs);
 
+const Aba = styled(Tab)`
+  span {
+     color: ${(props) => props.cor};
+  }
+`
+
 const MyTheme = createMuiTheme({
   palette: {
     primary: {
@@ -186,7 +192,7 @@ const Home = (props) => {
   }).filter(function (elem, index, self) {
     return index === self.indexOf(elem); /*Retira os duplicados */
   }).map((restaurant) =>{
-    return <Tab label={restaurant} value={restaurant} key={restaurant} />
+    return <Aba cor={restaurant === tipoSelecionado? '#5cb646' :'#000000' } label={restaurant} value={restaurant} key={restaurant} />
   })
 
   

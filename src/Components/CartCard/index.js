@@ -10,17 +10,17 @@ import {
   BottomContainer,
 } from "./styles";
 
-function CartCard() {
+function CartCard(props) {
   return (
     <CartCardContainer>
-      <CardImg src="https://images.unsplash.com/photo-1454438992604-4a8e59768a5a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" />
+      <CardImg src={props.foto} alt='Foto Produto' />
       <TextContainer>
         <div>
-          <ProductName variant="h6">Latte</ProductName>
-          <ProductDetails>Café, leite cremoso</ProductDetails>
+          <ProductName variant="h6">{props.nome}</ProductName>
+          <ProductDetails>{props.descricao}</ProductDetails>
         </div>
         <BottomContainer>
-          <Price>R$ 15,00</Price>
+          <Price>R$ {props.preco}</Price>
           <ActionButton>Adicionar</ActionButton>
         </BottomContainer>
       </TextContainer>
