@@ -6,27 +6,36 @@ import Cart from './pages/cart/Carrinho'
 import Home from './pages/home/Home'
 import Perfil from './pages/perfil/Perfil'
 import Registro from './pages/registro/Registro'
+import Restaurante from './pages/restaurante/Restaurante'
+import Busca from './pages/busca/Busca'
 
+const urlBase = 'https://us-central1-missao-newton.cloudfunctions.net/futureEatsB'
 
 const App = () => {  
 
   return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/">
+          <Route urlBase={urlBase} exact path="/">
             <Login />
           </Route>
-          <Route exact path="/home">
+          <Route urlBase={urlBase} exact path="/home">
             <Home />
           </Route>
-          <Route exact path="/registro">
+          <Route urlBase={urlBase} exact path="/registro">
             <Registro />
           </Route>
-          <Route exact path="/perfil">
+          <Route urlBase={urlBase} exact path="/perfil">
             <Perfil />
           </Route>
-          <Route exact path="/carrinho">
+          <Route urlBase={urlBase} exact path="/carrinho">
             <Cart />
+          </Route>
+          <Route urlBase={urlBase} exact path="/restaurante">
+            <Restaurante />
+          </Route>
+          <Route urlBase={urlBase} exact path="/busca">
+            <Busca />
           </Route>
         </Switch>
       </BrowserRouter>
