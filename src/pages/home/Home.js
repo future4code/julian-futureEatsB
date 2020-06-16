@@ -34,7 +34,7 @@ const Home = (props) => {
         <p>Cabeçalho</p>
       </div>
         < div id = "container-procurar" onClick={goToBuscar}> {/* Nota: Fiz em div mesmo porque ele não procura, pelo que entendi no Zeplin, quando clica vai direto para a página de busca. O input então fica na página de busca */ }
-          <img src={SearchIcon} alt="iconeProcurar" />
+          <img src={SearchIcon} alt="iconeProcurar" id="icone-procurar"/>
           <p id='placeholder-buscar'>Restaurante</p>
         </div>
 
