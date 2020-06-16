@@ -14,7 +14,9 @@ export const CardImg = styled.img`
   height: 100%;
   width: 40%;
   border: 10px;
-  object-fit: contain;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 `;
 
 export const ProductName = styled(Typography)`
@@ -26,10 +28,12 @@ export const TextContainer = styled.div`
   flex-flow: column wrap;
   width: 100%;
   justify-content: space-between;
+  margin-left: 5%;
 `;
 
 export const ProductDetails = styled.p`
-  font-size: 0.7em;
+  font-size: 0.8em;
+  color: #b8b8b8;
 `;
 
 export const ActionButton = styled.button`
@@ -37,9 +41,13 @@ export const ActionButton = styled.button`
   background-color: white;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  height: 2.5em;
+  width: 7em;
 `;
 
-export const Price = styled.p``;
+export const Price = styled.p`
+  font-size: 1.2em;
+`;
 
 export const BottomContainer = styled.div`
   display: flex;
