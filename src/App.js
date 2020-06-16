@@ -1,18 +1,19 @@
 import React from "react";
-import {Switch, Route, BrowserRouter } from "react-router-dom"
-import './App.css';
-import Login from './pages/login/Login'
-import Cart from './pages/cart/Carrinho'
-import Home from './pages/home/Home'
-import Perfil from './pages/perfil/Perfil'
-import Registro from './pages/registro/Registro'
-import Restaurante from './pages/restaurante/Restaurante'
+
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+import "./App.css";
+import Login from "./pages/login/Login";
+import Cart from "./pages/cart/Carrinho";
+import Home from "./pages/home/Home";
+import Perfil from "./pages/perfil/Perfil";
+import Registro from "./pages/registro/Registro";
+import Restaurante from "./pages/restaurante";
+
 import Busca from './pages/busca/Busca'
 
 const urlBase = 'https://us-central1-missao-newton.cloudfunctions.net/futureEatsB'
 
-const App = () => {  
-
+const App = () => {
   return (
       <BrowserRouter>
         <Switch>
