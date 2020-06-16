@@ -10,11 +10,9 @@ export const FeedCardContainer = styled.div`
 `;
 
 export const ProductImg = styled.img`
-  width: 100%;
-  height: 60%;
-  object-fit: fill;
-  border-top-right-radius: 8px;
-  border-top-left-radius: 8px;
+  width: 328px;
+  height: 120px;
+  object-fit: contain;
 `;
 
 export const StoreName = styled(Typography)`

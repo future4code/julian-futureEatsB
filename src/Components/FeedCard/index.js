@@ -6,16 +6,17 @@ import {
   TextContainer,
   OrderDetails,
 } from "./styles";
+import Foto from "../../img/image.png"
 
-function FeedCard() {
+function FeedCard(props) {
   return (
     <FeedCardContainer>
-      <ProductImg src="https://images.unsplash.com/photo-1500353391678-d7b57979d6d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" />
+      <ProductImg src={Foto} />
       <TextContainer>
-        <StoreName variant="h6">Ravel Café</StoreName>
+        <StoreName variant="h6">{props.nome}</StoreName>
         <div></div>
-        <OrderDetails>20 - 30mins</OrderDetails>
-        <OrderDetails>Frete R$10,00</OrderDetails>
+        <OrderDetails>{props.demora} min</OrderDetails>
+        <OrderDetails>Frete R${props.frete},00</OrderDetails>
       </TextContainer>
     </FeedCardContainer>
   );
