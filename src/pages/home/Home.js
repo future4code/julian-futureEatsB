@@ -7,27 +7,8 @@ import CardProduto from '../../Components/FeedCard/index';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '../../img/search.svg';
 
-const IconeProcurar = withStyles({
-  root: {
-    width: '17.5px',
-    height: '17.5px',
-    color: '#b8b8b8',
-  },
-})(SearchIcon);
-
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-  textField: {
-    width: '328px',
-    height: '56px',
-    borderRadius: '2px',
-    border: 'solid 1px #b8b8b8',
-  },
-}));
 
 const MyTheme = createMuiTheme({
   palette: {
@@ -41,21 +22,20 @@ const MyTheme = createMuiTheme({
 
 
 const Home = (props) => {
-  const classes = useStyles();
+  let history = useHistory();
 
+  const goToBuscar = () =>{
+    history.push('/busca')
+  }
 
   return (
     <ThemeProvider theme={MyTheme} className='telatoda'>
       <div>
         <p>Cabeçalho</p>
       </div>
-        <div>
-          <OutlinedInput
-            id="outlined-adornment-weight"
-            placeholder="Restaurante"
-            startAdornment={<IconeProcurar color="disabled"/>}
-            className={clsx(classes.margin, classes.textField)}
-          />
+        < div id = "container-procurar" onClick={goToBuscar}> {/* Nota: Fiz em div mesmo porque ele não procura, pelo que entendi no Zeplin, quando clica vai direto para a página de busca. O input então fica na página de busca */ }
+          <SearchIcon />
+          <p id='placeholder-buscar'>Restaurante</p>
         </div>
 
      
