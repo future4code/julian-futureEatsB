@@ -13,10 +13,13 @@ import {
 } from "./styles";
 import { Edit } from "@material-ui/icons";
 import CardHistorico from "../../Components/CardHistorico";
+import Footer from '../../Components/Footer';
+import Header from '../../Components/Header';
 
 export function Perfil(props) {
   return (
     <div className="telatoda">
+      <Header title={"Meu perfil"} />
       <UpperContainer>
         <BasicInfoText>Bruna Oliveira</BasicInfoText>
         <BotaoEdit>
@@ -38,6 +41,7 @@ export function Perfil(props) {
       </AdressContainer>
       <PedidosText>Histórico de pedidos</PedidosText>
       <CardHistorico />
+      <Footer page={"perfil"} />
     </div>
   );
 }

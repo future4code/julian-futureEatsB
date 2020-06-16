@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Footer from '../../Components/Footer/index';
+import Header from '../../Components/Header/index';
 import { useHistory } from "react-router";
 import styled from 'styled-components';
 import "./Home.css";
@@ -153,7 +155,14 @@ const Home = (props) => {
   })
 
   return (
-    <ThemeProvider theme={MyTheme} className='telatoda'>
+    <ThemeProvider theme={MyTheme} className='telatoda'>      
+      <Header title={"FutureEats"} />       
+       
+      <div id="container-procurar" onClick={goToBuscar}> {/* Nota: Fiz em div mesmo porque ele não procura, pelo que entendi no Zeplin, quando clica vai direto para a página de busca. O input então fica na página de busca */ }
+          <img src={SearchIcon} alt="iconeProcurar" id="icone-procurar"/>
+          <p id='placeholder-buscar'>Restaurante</p>
+       </div>
+      
       <section>
         <p>Cabeçalho</p>
       </section>  
@@ -169,7 +178,7 @@ const Home = (props) => {
       <section id="lista-restaurantes">
         {restaurantesNaTela}
       </section>  
-     
+     <Footer page={"home"}/>
     </ThemeProvider>
   );
 };
