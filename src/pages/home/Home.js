@@ -10,10 +10,24 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import SearchIcon from '../../img/procurar.svg';
-import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
+const Abas = withStyles({
+  root: {
+    boxShadow: 'none',
+    height: '100%',
+    textTransform: 'none',
+    fontSize: '16px',
+    fontFamily: 'Roboto',
+    fontWeight: 'normal',
+    fontStretch: 'normal',
+    fontStyle: 'normal',
+    lineHeight: 'normal',
+    letterSpacing: '-0.39px',
+    textAlign: 'center',
+  },
+})(Tabs);
 
 const MyTheme = createMuiTheme({
   palette: {
@@ -25,7 +39,7 @@ const MyTheme = createMuiTheme({
   }
 })
 
-const AppBarStyled = styled(AppBar)`
+const ContainerAbas = styled.div`
     width: 100vw;
     height: 42px;
     padding-left:16px;
@@ -180,38 +194,31 @@ const Home = (props) => {
     <ThemeProvider theme={MyTheme} className='telatoda'>      
       <Header title={"FutureEats"} />       
        
-      <div id="container-procurar" onClick={goToBuscar}> {/* Nota: Fiz em div mesmo porque ele não procura, pelo que entendi no Zeplin, quando clica vai direto para a página de busca. O input então fica na página de busca */ }
+      <section id="container-procurar" onClick={goToBuscar}> {/* Nota: Fiz em div mesmo porque ele não procura, pelo que entendi no Zeplin, quando clica vai direto para a página de busca. O input então fica na página de busca */ }
           <img src={SearchIcon} alt="iconeProcurar" id="icone-procurar"/>
           <p id='placeholder-buscar'>Restaurante</p>
-       </div>
+       </section> 
       
       <section>
-        <p>Cabeçalho</p>
-      </section>  
-      
-      <section id = "container-procurar" onClick={goToBuscar}> {/* Nota: Fiz em div mesmo porque ele não procura, pelo que entendi no Zeplin, quando clica vai direto para a página de busca. O input então fica na página de busca */ }
-          <img src={SearchIcon} alt="iconeProcurar" id="icone-procurar"/>
-          <p id='placeholder-buscar'>Restaurante</p>
-      </section>  
-      
-      <section>
-        <AppBarStyled position="static">
-          <Tabs
-              onChange={handleChange}
-              indicatorColor="secondary"
-              textColor="primary"
-              variant="scrollable"
-              scrollButtons="auto"
+        <ContainerAbas position="static">
+          <Abas
+            onChange={handleChange}
+            indicatorColor = "secondary"
+            textColor = "secondary"
+            variant = "scrollable"
+            scrollButtons = "auto"
           >
             {listaTipos}
-          </Tabs>
-        </AppBarStyled>
-
+          </Abas>
+        </ContainerAbas>
       </section>
+      
       <section id="lista-restaurantes">
         {tipoSelecionado === 'todos' ? restaurantesTotais : restaurantesFiltrados}
       </section>  
+
      <Footer page={"home"}/>
+    
     </ThemeProvider>
   );
 };
