@@ -13,7 +13,7 @@ function FeedCard(props) {
     <FeedCardContainer>
       <ProductImg src={Foto} />
       <TextContainer>
-        <StoreName variant="h6">{props.nome}</StoreName>
+        <StoreName>{props.nome}</StoreName>
         <div></div>
         <OrderDetails>{props.demora} min</OrderDetails>
         <OrderDetails>Frete R${props.frete},00</OrderDetails>

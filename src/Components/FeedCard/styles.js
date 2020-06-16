@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { Typography } from "@material-ui/core";
 
 export const FeedCardContainer = styled.div`
-  border: 1px grey solid;
-  width: 90%;
-  margin: auto;
-  height: 20vh;
+  border: solid 1px #b8b8b8;
+  width: 328px;
+  margin: 8px 16px;
+  height: 188px;
   border-radius: 8px;
 `;
 
@@ -16,6 +16,15 @@ export const ProductImg = styled.img`
 `;
 
 export const StoreName = styled(Typography)`
+  width: 296px;
+  height: 18px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
   color: #5cb646;
 `;
 
