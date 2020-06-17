@@ -9,6 +9,8 @@ import Perfil from "./pages/perfil/Perfil";
 import Registro from "./pages/registro/Registro";
 import Restaurante from "./pages/restaurante";
 import Inicial from "./pages/PaginaInicial/PaginaInicial";
+import EditarCadastro from './pages/editarCadastro/EditarCadastro';
+import EditarEndereco from './pages/editarEndereco/EditarEndereco';
 
 import Busca from "./pages/busca/Busca";
 import Endereco from "./pages/endereco";
@@ -37,6 +39,12 @@ const App = () => {
         </Route>
         <Route urlBase={urlBase} exact path="/perfil">
           <Perfil />
+        </Route>
+        <Route urlBase={urlBase} exact path="/perfil/cadastro">
+          <EditarCadastro />
+        </Route>
+        <Route urlBase={urlBase} exact path="/perfil/endereco">
+          <EditarEndereco />
         </Route>
         <Route urlBase={urlBase} exact path="/carrinho">
           <Cart />
