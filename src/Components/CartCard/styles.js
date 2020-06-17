@@ -43,12 +43,36 @@ export const ProductDetails = styled.p`
 `;
 
 export const ActionButton = styled.button`
-  border: 2px #5cb646 solid;
+  border: 2px #e02020 solid;
   background-color: white;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
   height: 2.5em;
   width: 7em;
+  color: #e02020;
+`;
+
+export const ContainerQuant = styled.div `
+  width: 9.167vw;
+  height: 9.167vw;
+  border-radius: 0 8px 0 8px;
+  border: solid 2px #5cb646;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2; 
+`;
+
+export const ProductQuant = styled.p `
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.108vw;
+  text-align: center;
+  color: #5cb646;
 `;
 
 export const Price = styled.p`
@@ -62,6 +86,12 @@ export const BottomContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   height: 35%;
+`;
+
+export const CabecalhoCard = styled.div `
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 `;
 
 export const UpperContainer = styled.div`
