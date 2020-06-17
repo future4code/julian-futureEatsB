@@ -3,7 +3,6 @@ import { Typography } from "@material-ui/core";
 
 //usarei px nas alturas porque foi pedido que não importasse o tamanho da tela, que a altura deveria ser sempre a mesma
 
-
 export const CartCardContainer = styled.div`
   height: 112px;
   border: grey 1px solid;
@@ -19,7 +18,7 @@ export const ContainerImg = styled.div`
   height: 100%;
   width: 30vw;
   overflow: hidden;
-`
+`;
 export const CardImg = styled.img`
   object-fit: cover;
   height: 100%;
@@ -62,9 +61,9 @@ export const BottomContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  height: 24%;
+  height: 35%;
 `;
 
 export const UpperContainer = styled.div`
-  height: 76%;
+  height: 65%;
 `;

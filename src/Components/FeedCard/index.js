@@ -1,5 +1,5 @@
 import React from "react";
-import {useHistory} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 import {
   FeedCardContainer,
   ProductImg,
@@ -7,23 +7,31 @@ import {
   TextContainer,
   OrderDetailsDem,
   OrderDetailsFre,
-  ContainerImg
+  ContainerImg,
 } from "./styles";
 
 function FeedCard(props) {
   let history = useHistory();
-  
+
   const goToRestaurante = (id) => {
-    history.push("/restaurante")
-  }
+    history.push(`/restaurante/${id}`);
+  };
 
   return (
-    <FeedCardContainer onClick={() => {goToRestaurante(props.idRest)}}>
-      <ContainerImg><ProductImg src={props.foto} /></ContainerImg>
+    <FeedCardContainer
+      onClick={() => {
+        goToRestaurante(props.idRest);
+      }}
+    >
+      <ContainerImg>
+        <ProductImg src={props.foto} />
+      </ContainerImg>
       <TextContainer>
         <StoreName>{props.nome}</StoreName>
-        <OrderDetailsDem >{props.demora} min</OrderDetailsDem>
-        <OrderDetailsFre>{props.frete === '' ? 'Frete Grátis' : `Frete R$${props.frete}`}</OrderDetailsFre>
+        <OrderDetailsDem>{props.demora} min</OrderDetailsDem>
+        <OrderDetailsFre>
+          {props.frete === "" ? "Frete Grátis" : `Frete R$${props.frete}`}
+        </OrderDetailsFre>
       </TextContainer>
     </FeedCardContainer>
   );
