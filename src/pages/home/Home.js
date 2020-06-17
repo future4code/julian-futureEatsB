@@ -57,16 +57,6 @@ const Home = (props) => {
   const [tipoSelecionado, setTipoSelecionado] = useState('todos');
   const [restaurantes, setRestaurantes] = useState([
     {
-      "id": "51",
-      "description": "Restaurante sofisticado busca o equilíbrio entre ingredientes que realçam a experiência da culinária japonesa.",
-      "address": "Travessa Reginaldo Pereira, 130 - Ibitinga",
-      "logoUrl": "https://paginaamarela.com.br/storage/categorias/lanchonetes-20200327190257-paginaamarela.jpg",
-      "deliveryTime": 45,
-      "category": "Hamburguer",
-      "name": "CowboyBurger",
-      "shipping": 13,
-    },
-    {
       "id": "1",
       "name": "Habibs",
       "shipping": 6,
@@ -180,11 +170,11 @@ const Home = (props) => {
   const restaurantesFiltrados = restaurantes.filter((restaurante) => {
     return restaurante.category === tipoSelecionado;
     }).map((restaurante) =>{
-      return <CardRestaurant nome={restaurante.name} demora={restaurante.deliveryTime} frete={restaurante.shipping}/>
+      return <CardRestaurant foto={restaurante.logoUrl} idRest={restaurante.id} nome={restaurante.name} demora={restaurante.deliveryTime} frete={restaurante.shipping}/>
     })
   
   const restaurantesTotais = restaurantes.map((restaurante) =>{
-      return <CardRestaurant nome={restaurante.name} demora={restaurante.deliveryTime} frete={restaurante.shipping}/>
+      return <CardRestaurant foto={restaurante.logoUrl} idRest={restaurante.id} nome={restaurante.name} demora={restaurante.deliveryTime} frete={restaurante.shipping.toFixed(2).replace('.', ',')}/>
     })
   
   const listaTipos = restaurantes.map((restaurante) => {
@@ -197,33 +187,35 @@ const Home = (props) => {
 
   
   return (
-    <ThemeProvider theme={MyTheme} className='telatoda'>      
-      <Header title={"FutureEats"} />       
-       
-      <section id="container-procurar" onClick={goToBuscar}> {/* Nota: Fiz em div mesmo porque ele não procura, pelo que entendi no Zeplin, quando clica vai direto para a página de busca. O input então fica na página de busca */ }
-          <img src={SearchIcon} alt="iconeProcurar" id="icone-procurar"/>
-          <p id='placeholder-buscar'>Restaurante</p>
-       </section> 
-      
-      <section>
-        <ContainerAbas position="static">
-          <Abas
-            onChange={handleChange}
-            indicatorColor = "secondary"
-            textColor = "secondary"
-            variant = "scrollable"
-            scrollButtons = "auto"
-          >
-            {listaTipos}
-          </Abas>
-        </ContainerAbas>
-      </section>
-      
-      <section id="lista-restaurantes">
-        {tipoSelecionado === 'todos' ? restaurantesTotais : restaurantesFiltrados}
-      </section>  
-
-     <Footer page={"home"}/>
+    <ThemeProvider theme={MyTheme}>      
+      <div id='tela-toda'>
+        <Header title={"FutureEats"} />       
+         
+        <section id="container-procurar" onClick={goToBuscar}> {/* Nota: Fiz em div mesmo porque ele não procura, pelo que entendi no Zeplin, quando clica vai direto para a página de busca. O input então fica na página de busca */ }
+            <img src={SearchIcon} alt="iconeProcurar" id="icone-procurar"/>
+            <p id='placeholder-buscar'>Restaurante</p>
+         </section> 
+        
+        <section>
+          <ContainerAbas position="static">
+            <Abas
+              onChange={handleChange}
+              indicatorColor = "secondary"
+              textColor = "secondary"
+              variant = "scrollable"
+              scrollButtons = "auto"
+            >
+              {listaTipos}
+            </Abas>
+          </ContainerAbas>
+        </section>
+        
+        <section id="lista-restaurantes">
+          {tipoSelecionado === 'todos' ? restaurantesTotais : restaurantesFiltrados}
+        </section>  
+  
+        <Footer page={"home"}/>
+      </div>
     
     </ThemeProvider>
   );

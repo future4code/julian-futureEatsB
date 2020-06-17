@@ -20,7 +20,7 @@ function CartCard(props) {
           <ProductDetails>{props.descricao}</ProductDetails>
         </div>
         <BottomContainer>
-          <Price>R$ {props.preco}</Price>
+          <Price>R${props.preco}</Price>
           <ActionButton>Adicionar</ActionButton>
         </BottomContainer>
       </TextContainer>

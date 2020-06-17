@@ -1,22 +1,29 @@
 import React from "react";
+import {useHistory} from 'react-router-dom'
 import {
   FeedCardContainer,
   ProductImg,
   StoreName,
   TextContainer,
-  OrderDetails,
+  OrderDetailsDem,
+  OrderDetailsFre,
+  ContainerImg
 } from "./styles";
-import Foto from "../../img/image.png"
 
 function FeedCard(props) {
+  let history = useHistory();
+  
+  const goToRestaurante = (id) => {
+    history.push("/restaurante")
+  }
+
   return (
-    <FeedCardContainer>
-      <ProductImg src={Foto} />
+    <FeedCardContainer onClick={() => {goToRestaurante(props.idRest)}}>
+      <ContainerImg><ProductImg src={props.foto} /></ContainerImg>
       <TextContainer>
         <StoreName>{props.nome}</StoreName>
-        <div></div>
-        <OrderDetails>{props.demora} min</OrderDetails>
-        <OrderDetails>Frete R${props.frete},00</OrderDetails>
+        <OrderDetailsDem >{props.demora} min</OrderDetailsDem>
+        <OrderDetailsFre>{props.frete === '' ? 'Frete Grátis' : `Frete R$${props.frete}`}</OrderDetailsFre>
       </TextContainer>
     </FeedCardContainer>
   );
