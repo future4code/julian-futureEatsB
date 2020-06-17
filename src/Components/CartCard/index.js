@@ -8,12 +8,17 @@ import {
   Price,
   ActionButton,
   BottomContainer,
+  ContainerImg
 } from "./styles";
 
 function CartCard(props) {
   return (
     <CartCardContainer>
-      <CardImg src={props.foto} alt='Foto Produto' />
+      
+      <ContainerImg>    
+        <CardImg src={props.foto} alt='Foto Produto' />
+      </ContainerImg>
+      
       <TextContainer>
         <div>
           <ProductName variant="h6">{props.nome}</ProductName>

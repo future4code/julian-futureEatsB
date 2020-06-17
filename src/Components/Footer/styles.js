@@ -6,5 +6,5 @@ export const FooterContainer = styled.footer`
     height: 7vh;
     position: fixed;
     bottom: 0;
-    border-top: 1px solid black;
+    box-shadow: 0 -1px 3px 0 #00000033, 0 -2px 1px -1px #0000001e, 0 -1px 1px 0 #00000023;
 `

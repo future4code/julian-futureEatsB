@@ -17,13 +17,13 @@
 
 #endereco{
     width: 100vw;
-    height: 11.875vh;
+    height: 14.491vh;
     background-color: #eeeeee;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    margin-top: 0.15625vh;
+    margin-top: 0.191vh;
 }
 
 #lista-carrinho {
@@ -41,7 +41,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     align-items: end;
-    margin-bottom: 3.75vh;
+    margin-bottom: 3.576vh;
 }
 
 #frete>p {
@@ -76,7 +76,7 @@
 
 #carrinho-vazio{
     width: 82.22vw;
-    height: 2.8125vh;
+    height: 3.432vh;
     opacity: 0.89;
     font-family: Roboto;
     font-size: 16px;
@@ -87,7 +87,7 @@
     letter-spacing: -0.10833vw;
     text-align: center;
     color: #000000;
-    margin-top: 3.125vh
+    margin-top: 3.813vh
 }
 
 #endereco>p, #dados-restaurante-cart>p{
@@ -103,7 +103,7 @@
 
 #endereco > p:first-child{
     color: #b8b8b8;
-    margin: 2.5vh 0 1.25vh 4.444vw;
+    margin: 3.051vh 0 1.525vh 4.444vw;
 }
 
 #endereco>p:last-child {
@@ -117,12 +117,12 @@
 }
 
 #dados-restaurante-cart>p:last-child {
-    margin-top: 1.25vh;
-    margin-bottom: 2.5vh;
+    margin-top: 1.525vh;
+    margin-bottom: 3.051vh;
 }
 
 #dados-restaurante-cart>p:first-child{
-    margin: 4.444vw 0 1.25vh 4.444vw;
+    margin: 4.444vw 0 1.525vh 4.444vw;
     color: #5cb646;
 }
 
@@ -131,7 +131,7 @@
 }
 
 #pagamento>p {
-    margin-bottom: 1.25vh;
+    margin-bottom: 1.525vh;
 }
 
 
