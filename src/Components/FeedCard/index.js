@@ -5,7 +5,8 @@ import {
   ProductImg,
   StoreName,
   TextContainer,
-  OrderDetails,
+  OrderDetailsDem,
+  OrderDetailsFre
 } from "./styles";
 
 function FeedCard(props) {
@@ -20,9 +21,8 @@ function FeedCard(props) {
       <ProductImg src={props.foto} />
       <TextContainer>
         <StoreName>{props.nome}</StoreName>
-        <div></div>
-        <OrderDetails>{props.demora} min</OrderDetails>
-        <OrderDetails>{props.frete === '' ? 'Frete Grátis' : `Frete R$${props.frete}`}</OrderDetails>
+        <OrderDetailsDem >{props.demora} min</OrderDetailsDem>
+        <OrderDetailsFre>{props.frete === '' ? 'Frete Grátis' : `Frete R$${props.frete}`}</OrderDetailsFre>
       </TextContainer>
     </FeedCardContainer>
   );
