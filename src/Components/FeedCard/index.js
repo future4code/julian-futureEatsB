@@ -6,7 +6,8 @@ import {
   StoreName,
   TextContainer,
   OrderDetailsDem,
-  OrderDetailsFre
+  OrderDetailsFre,
+  ContainerImg
 } from "./styles";
 
 function FeedCard(props) {
@@ -18,7 +19,7 @@ function FeedCard(props) {
 
   return (
     <FeedCardContainer onClick={() => {goToRestaurante(props.idRest)}}>
-      <ProductImg src={props.foto} />
+      <ContainerImg><ProductImg src={props.foto} /></ContainerImg>
       <TextContainer>
         <StoreName>{props.nome}</StoreName>
         <OrderDetailsDem >{props.demora} min</OrderDetailsDem>
