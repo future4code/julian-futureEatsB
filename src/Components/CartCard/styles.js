@@ -1,22 +1,29 @@
 import styled from "styled-components";
 import { Typography } from "@material-ui/core";
 
+//usarei px nas alturas porque foi pedido que não importasse o tamanho da tela, que a altura deveria ser sempre a mesma
+
+
 export const CartCardContainer = styled.div`
-  height: 20vh;
+  height: 112px;
   border: grey 1px solid;
-  width: 96%;
   margin: 1vh auto;
+  width: 91.111vw;
+  margin: 8px auto;
   border-radius: 8px;
   display: flex;
+  overflow: hidden;
 `;
 
-export const CardImg = styled.img`
+export const ContainerImg = styled.div`
   height: 100%;
-  width: 40%;
-  border: 10px;
+  width: 30vw;
+  overflow: hidden;
+`
+export const CardImg = styled.img`
   object-fit: cover;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  height: 100%;
+  margin-left: -60%;
 `;
 
 export const ProductName = styled(Typography)`

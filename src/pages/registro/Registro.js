@@ -1,19 +1,38 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router";
-import styled from 'styled-components';
-import "./Registro.css";
+import React from 'react'
+import {Container, Imagem, Paragrafo, ContainerInput, Input, Botao } from './styles'
+import Header from '../../Components/Header/index'
+import logo from '../../img/logo-invertido.png'
+import Password from '../../Components/InputPassword'
 
 
 
-const Registro = (props) => {
-    
-  
-  return (
-    <div className='telatoda'>
-     
-        <p>Oi, eu sou o Registro</p>
-    </div>
-  );
-};
+const Registro = () => {
+    return (
 
-export default Registro;
+        <Container>
+            <Header/>
+            <Imagem src={logo}/>
+            <Paragrafo>Cadastrar</Paragrafo>
+            <ContainerInput>
+            <Input label="nome e sobrenome" variant="outlined"/>
+            <Input label="email" variant="outlined"/>
+            <Input label="cpf" variant="outlined"/>
+            <Password label="senha"/>
+            <Input label="confirmar" variant="outlined"/>
+
+            <Botao>Criar</Botao>
+
+
+            </ContainerInput>
+            
+
+
+
+        </Container>
+    )
+
+
+
+}
+
+export default Registro

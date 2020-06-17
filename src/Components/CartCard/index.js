@@ -9,25 +9,27 @@ import {
   ActionButton,
   BottomContainer,
   UpperContainer,
+  ContainerImg
 } from "./styles";
 import { CartReducer } from "../../functions/CardReducer";
 
-function CartCard() {
-  // const [state, dispatch] = useReducer(CartReducer, initialState);
-
-  // const addProductToCart = (product) => {
-  //   dispatch({ type: "ADD", product });
-  // };
+function CartCard(props) {
   return (
-    <CartCardContainer>
-      <CardImg src="https://images.unsplash.com/photo-1454438992604-4a8e59768a5a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" />
+    <CartCardContainer> 
+      <ContainerImg>    
+        <CardImg src={props.foto} alt='Foto Produto' />
+      </ContainerImg>
       <TextContainer>
         <UpperContainer>
           <ProductName variant="h6">Latte</ProductName>
           <ProductDetails>Café, leite cremoso</ProductDetails>
         </UpperContainer>
+        <div>
+          <ProductName variant="h6">{props.nome}</ProductName>
+          <ProductDetails>{props.descricao}</ProductDetails>
+        </div>
         <BottomContainer>
-          <Price>R$ 15,00</Price>
+          <Price>R${props.preco}</Price>
           <ActionButton>Adicionar</ActionButton>
         </BottomContainer>
       </TextContainer>
