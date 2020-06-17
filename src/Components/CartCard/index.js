@@ -10,6 +10,10 @@ import {
   BottomContainer,
   UpperContainer,
   ContainerImg,
+  CabecalhoCard,
+  ContainerQuant,
+  ProductQuant
+
 } from "./styles";
 import { CartReducer } from "../../functions/CardReducer";
 
@@ -21,12 +25,17 @@ function CartCard(props) {
       </ContainerImg>
       <TextContainer>
         <UpperContainer>
-          <ProductName variant="h6">{props.nome}</ProductName>
+          <CabecalhoCard>
+            <ProductName>{props.nome}</ProductName>
+            <ContainerQuant>
+              <ProductQuant>{props.quantidade}</ProductQuant>
+            </ContainerQuant>
+          </CabecalhoCard>
           <ProductDetails>{props.descricao}</ProductDetails>
         </UpperContainer>
         <BottomContainer>
           <Price>R${props.preco}</Price>
-          <ActionButton>Adicionar</ActionButton>
+          <ActionButton>Remover</ActionButton>
         </BottomContainer>
       </TextContainer>
     </CartCardContainer>
