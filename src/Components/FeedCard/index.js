@@ -14,7 +14,7 @@ function FeedCard(props) {
   let history = useHistory();
 
   const goToRestaurante = (id) => {
-    history.push(`/restaurante/${id}`);
+    history.push(`/restaurante/${props.idRest}`);
   };
 
   return (
