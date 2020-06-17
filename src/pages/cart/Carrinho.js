@@ -78,7 +78,7 @@ const Carrinho = (props) => {
     secaoMostrada = <p id='carrinho-vazio'>Carrinho Vazio</p>
   }else{
     const produtosNatela = cart[0].restaurant.products.map((produto) =>{
-      return <CartCard foto={produto.photoUrl} nome={produto.name} descricao={produto.description} preco={produto.price.toFixed(2).replace('.', ',')}/> 
+      return <CartCard quantidade={1} foto={produto.photoUrl} nome={produto.name} descricao={produto.description} preco={produto.price.toFixed(2).replace('.', ',')}/> 
     })
     secaoMostrada = <section>
       <section id='dados-restaurante-cart'>

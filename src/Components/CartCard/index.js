@@ -28,10 +28,10 @@ function CartCard(props) {
           <CabecalhoCard>
             <ProductName>{props.nome}</ProductName>
             <ContainerQuant>
-              <ProductQuant>1</ProductQuant>
+              <ProductQuant>{props.quantidade}</ProductQuant>
             </ContainerQuant>
           </CabecalhoCard>
-          <ProductDetails>dhwdhsjhjdh jhdsjhfjdshfjdshfj hdsjfhjdsh fjdshfjdshfjh</ProductDetails>
+          <ProductDetails>{props.descricao}</ProductDetails>
         </UpperContainer>
         <BottomContainer>
           <Price>R${props.preco}</Price>
