@@ -26,12 +26,12 @@ function CartCard(props) {
       <TextContainer>
         <UpperContainer>
           <CabecalhoCard>
-            <ProductName variant="h6">{props.nome}</ProductName>
+            <ProductName>{props.nome}</ProductName>
             <ContainerQuant>
               <ProductQuant>1</ProductQuant>
             </ContainerQuant>
           </CabecalhoCard>
-          <ProductDetails>{props.descricao}</ProductDetails>
+          <ProductDetails>dhwdhsjhjdh jhdsjhfjdshfjdshfj hdsjfhjdsh fjdshfjdshfjh</ProductDetails>
         </UpperContainer>
         <BottomContainer>
           <Price>R${props.preco}</Price>

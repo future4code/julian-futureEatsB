@@ -25,7 +25,15 @@ export const CardImg = styled.img`
   margin-left: -60%;
 `;
 
-export const ProductName = styled(Typography)`
+export const ProductName = styled.p`
+  margin-top: 18px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
   color: #5cb646;
 `;
 
@@ -38,7 +46,13 @@ export const TextContainer = styled.div`
 `;
 
 export const ProductDetails = styled.p`
-  font-size: 0.8em;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.29px;
   color: #b8b8b8;
 `;
 
@@ -47,8 +61,16 @@ export const ActionButton = styled.button`
   background-color: white;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  height: 2.5em;
-  width: 7em;
+  height: 31px;
+  width: 25vw;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.29px;
+  text-align: center;
   color: #e02020;
 `;
 
@@ -76,21 +98,27 @@ export const ProductQuant = styled.p `
 `;
 
 export const Price = styled.p`
-  font-size: 1.1em;
-  font-weight: bold;
-  margin-top: 5%;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
+  color: #000000;
 `;
 
 export const BottomContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  height: 35%;
+  margin-top: 7px;
 `;
 
 export const CabecalhoCard = styled.div `
   display: flex;
   width: 100%;
+  margin-bottom: 8px;
   justify-content: space-between;
 `;
 
