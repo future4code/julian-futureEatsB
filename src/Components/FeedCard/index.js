@@ -1,4 +1,5 @@
 import React from "react";
+import {useHistory} from 'react-router-dom'
 import {
   FeedCardContainer,
   ProductImg,
@@ -6,17 +7,22 @@ import {
   TextContainer,
   OrderDetails,
 } from "./styles";
-import Foto from "../../img/image.png"
 
 function FeedCard(props) {
+  let history = useHistory();
+  
+  const goToRestaurante = (id) => {
+    history.push("/restaurante")
+  }
+
   return (
-    <FeedCardContainer>
-      <ProductImg src={Foto} />
+    <FeedCardContainer onClick={() => {goToRestaurante(props.idRest)}}>
+      <ProductImg src={props.foto} />
       <TextContainer>
         <StoreName>{props.nome}</StoreName>
         <div></div>
         <OrderDetails>{props.demora} min</OrderDetails>
-        <OrderDetails>Frete R${props.frete},00</OrderDetails>
+        <OrderDetails>{props.frete === '' ? 'Frete Grátis' : `Frete R$${props.frete}`}</OrderDetails>
       </TextContainer>
     </FeedCardContainer>
   );

@@ -180,11 +180,11 @@ const Home = (props) => {
   const restaurantesFiltrados = restaurantes.filter((restaurante) => {
     return restaurante.category === tipoSelecionado;
     }).map((restaurante) =>{
-      return <CardRestaurant nome={restaurante.name} demora={restaurante.deliveryTime} frete={restaurante.shipping}/>
+      return <CardRestaurant foto={restaurante.logoUrl} idRest={restaurante.id} nome={restaurante.name} demora={restaurante.deliveryTime} frete={restaurante.shipping}/>
     })
   
   const restaurantesTotais = restaurantes.map((restaurante) =>{
-      return <CardRestaurant nome={restaurante.name} demora={restaurante.deliveryTime} frete={restaurante.shipping}/>
+      return <CardRestaurant foto={restaurante.logoUrl} idRest={restaurante.id} nome={restaurante.name} demora={restaurante.deliveryTime} frete={restaurante.shipping.toFixed(2).replace('.', ',')}/>
     })
   
   const listaTipos = restaurantes.map((restaurante) => {

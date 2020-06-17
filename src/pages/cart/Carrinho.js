@@ -59,16 +59,12 @@ const Carrinho = (props) => {
   })
 
   useEffect(() => {    
-   defineBotao()
-  }, []);
-
-  const defineBotao = () =>{
-     if (formaPagamento !== '' && cart.length !== 0) {
-       setBotaoAtivado(true)
-     } else if (formaPagamento === '' || cart.length === 0){
-       setBotaoAtivado(false)
-     }
-  }
+   if (formaPagamento !== '' && cart.length !== 0) {
+     setBotaoAtivado(true)
+   } else if (formaPagamento === '' || cart.length === 0) {
+     setBotaoAtivado(false)
+   }
+  }, [formaPagamento, cart.length]);
 
   const handleChange = (event) => {
     setFormaPagamento(event.target.value);
@@ -82,7 +78,7 @@ const Carrinho = (props) => {
     secaoMostrada = <p id='carrinho-vazio'>Carrinho Vazio</p>
   }else{
     const produtosNatela = cart[0].restaurant.products.map((produto) =>{
-      return <CartCard foto={produto.photoUrl} nome={produto.name} descricao={produto.description} preco={produto.price.toFixed(2)}/> 
+      return <CartCard foto={produto.photoUrl} nome={produto.name} descricao={produto.description} preco={produto.price.toFixed(2).replace('.', ',')}/> 
     })
     secaoMostrada = <section>
       <section id='dados-restaurante-cart'>
@@ -93,10 +89,6 @@ const Carrinho = (props) => {
       {produtosNatela} 
     </section>
   }
-
-  console.log('Ativação do Botão: ', botaoAtivado)
-  console.log('Forma de Pgto: ', formaPagamento)
-  console.log('cart.length: ', cart.length)
 
   return (
     <div className='telatoda'>
