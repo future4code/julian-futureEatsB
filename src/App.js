@@ -9,11 +9,11 @@ import Perfil from "./pages/perfil/Perfil";
 import Registro from "./pages/registro/Registro";
 import Restaurante from "./pages/restaurante";
 import Inicial from "./pages/PaginaInicial/PaginaInicial";
-import EditarCadastro from './pages/editarCadastro/EditarCadastro';
-import EditarEndereco from './pages/editarEndereco/EditarEndereco';
+import EditarCadastro from "./pages/editarCadastro/EditarCadastro";
+import EditarEndereco from "./pages/editarEndereco/EditarEndereco";
 import Busca from "./pages/busca/Busca";
 import Endereco from "./pages/endereco";
-
+import PlaceholderCarrinho from "./pages/placeholderCarrinho";
 const urlBase =
   "https://us-central1-missao-newton.cloudfunctions.net/futureEatsB";
 
@@ -21,7 +21,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-      <Route urlBase={urlBase} exact path="/">
+        <Route urlBase={urlBase} exact path="/">
           <Inicial />
         </Route>
         <Route urlBase={urlBase} exact path="/Login">
@@ -34,7 +34,7 @@ const App = () => {
           <Registro />
         </Route>
         <Route urlBase={urlBase} exact path="/cadastro-endereco">
-          <Endereco/>
+          <Endereco />
         </Route>
         <Route urlBase={urlBase} exact path="/perfil">
           <Perfil />
