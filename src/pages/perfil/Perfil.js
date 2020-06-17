@@ -17,12 +17,14 @@ import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
 
 export function Perfil(props) {
+  let history = useHistory();
+
   return (
     <div className="telatoda">
       <Header title={"Meu perfil"} />
       <UpperContainer>
         <BasicInfoText>Bruna Oliveira</BasicInfoText>
-        <BotaoEdit>
+        <BotaoEdit onClick={() => history.push("/perfil/cadastro")}>
           <Edit />
         </BotaoEdit>
       </UpperContainer>
@@ -34,7 +36,7 @@ export function Perfil(props) {
         <Endereço>Endereço cadastrado</Endereço>
         <AdressLowerContainer>
           <BasicInfoText>Rua dos bobos, no 0</BasicInfoText>
-          <BotaoEdit>
+          <BotaoEdit onClick={() => history.push("/perfil/endereco")}>
             <Edit />
           </BotaoEdit>
         </AdressLowerContainer>
