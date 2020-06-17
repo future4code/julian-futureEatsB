@@ -8,8 +8,8 @@ import Home from "./pages/home/Home";
 import Perfil from "./pages/perfil/Perfil";
 import Registro from "./pages/registro/Registro";
 import Restaurante from "./pages/restaurante";
-
 import Busca from "./pages/busca/Busca";
+import PlaceholderCarrinho from "./pages/placeholderCarrinho";
 
 const urlBase =
   "https://us-central1-missao-newton.cloudfunctions.net/futureEatsB";
@@ -38,6 +38,9 @@ const App = () => {
         </Route>
         <Route urlBase={urlBase} exact path="/busca">
           <Busca />
+        </Route>
+        <Route urlBase={urlBase} exact path="/placeholder">
+          <PlaceholderCarrinho />
         </Route>
       </Switch>
     </BrowserRouter>
