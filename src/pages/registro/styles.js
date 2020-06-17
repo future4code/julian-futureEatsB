@@ -13,11 +13,10 @@ export const Container = styled.div`
 
 export const Imagem = styled.img`
     width: 28.8vw;
-
     margin: 3.75vh auto 4.375vh auto;
+    width: 104px;
+    height: 58px;
     
-    
-
 
 `
 export const Paragrafo = styled.p`

@@ -25,7 +25,15 @@ export const CardImg = styled.img`
   margin-left: -60%;
 `;
 
-export const ProductName = styled(Typography)`
+export const ProductName = styled.p`
+  margin-top: 18px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
   color: #5cb646;
 `;
 
@@ -38,30 +46,80 @@ export const TextContainer = styled.div`
 `;
 
 export const ProductDetails = styled.p`
-  font-size: 0.8em;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.29px;
   color: #b8b8b8;
 `;
 
 export const ActionButton = styled.button`
-  border: 2px #5cb646 solid;
+  border: 2px #e02020 solid;
   background-color: white;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  height: 2.5em;
-  width: 7em;
+  height: 31px;
+  width: 25vw;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.29px;
+  text-align: center;
+  color: #e02020;
+`;
+
+export const ContainerQuant = styled.div `
+  width: 9.167vw;
+  height: 9.167vw;
+  border-radius: 0 8px 0 8px;
+  border: solid 2px #5cb646;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2; 
+`;
+
+export const ProductQuant = styled.p `
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.108vw;
+  text-align: center;
+  color: #5cb646;
 `;
 
 export const Price = styled.p`
-  font-size: 1.1em;
-  font-weight: bold;
-  margin-top: 5%;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
+  color: #000000;
 `;
 
 export const BottomContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  height: 35%;
+  margin-top: 7px;
+`;
+
+export const CabecalhoCard = styled.div `
+  display: flex;
+  width: 100%;
+  margin-bottom: 8px;
+  justify-content: space-between;
 `;
 
 export const UpperContainer = styled.div`
