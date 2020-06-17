@@ -8,10 +8,10 @@ import Password from '../../Components/InputPassword'
 
 const Registro = () => {
     return (
-
-        <Container>
-            <Header/>
-            <Imagem src={logo}/>
+        <>
+        <Header back/>
+        <Container>   
+          <Imagem src={logo}/>
             <Paragrafo>Cadastrar</Paragrafo>
             <ContainerInput>
             <Input label="nome e sobrenome" variant="outlined"/>
@@ -28,7 +28,7 @@ const Registro = () => {
 
 
 
-        </Container>
+        </Container> </>
     )
 
 

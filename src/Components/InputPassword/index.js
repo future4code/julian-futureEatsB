@@ -25,19 +25,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Password() {
+export default function Password(props) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
     showPassword: false,
   });
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
@@ -45,17 +37,26 @@ export default function Password() {
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
+  
   };
+
+
+
+
+
+  
 
   return (
       <div>
         <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
+            value={props.value}
+            onChange={props.onChange}
+            required
+            placeholder="Minino 6 caracteres"
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
