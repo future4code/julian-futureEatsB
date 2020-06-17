@@ -119,7 +119,10 @@ const Carrinho = (props) => {
           </FormControl>
         </section>
 
-        <Button onClick={confirmaPedido} title={'Confirmar'}/>
+        <Button active={botaoAtivado} onClick={confirmaPedido} title={'Confirmar'}/>
+        <br />
+        <br />
+        <br />
 
         <Footer page={"carrinho"} />
     </div>
