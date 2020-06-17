@@ -11,6 +11,7 @@ import Restaurante from "./pages/restaurante";
 import Inicial from "./pages/PaginaInicial/PaginaInicial";
 
 import Busca from "./pages/busca/Busca";
+import Endereco from "./pages/endereco";
 
 const urlBase =
   "https://us-central1-missao-newton.cloudfunctions.net/futureEatsB";
@@ -30,6 +31,9 @@ const App = () => {
         </Route>
         <Route urlBase={urlBase} exact path="/registro">
           <Registro />
+        </Route>
+        <Route urlBase={urlBase} exact path="/cadastro-endereco">
+          <Endereco/>
         </Route>
         <Route urlBase={urlBase} exact path="/perfil">
           <Perfil />
