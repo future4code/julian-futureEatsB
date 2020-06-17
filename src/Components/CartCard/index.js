@@ -21,21 +21,18 @@ function CartCard(props) {
   return (
     <CartCardContainer>
       <ContainerImg>
-        <CardImg src={props.foto} alt="Foto Produto" />
+        <CardImg src={props.main.photoUrl} alt="Foto Produto" />
       </ContainerImg>
       <TextContainer>
         <UpperContainer>
-          <CabecalhoCard>
-            <ProductName>{props.nome}</ProductName>
-            <ContainerQuant>
-              <ProductQuant>{props.quantidade}</ProductQuant>
-            </ContainerQuant>
-          </CabecalhoCard>
+ walter5
+          <ProductName variant="h6">{props.main.name}</ProductName>
           <ProductDetails>{props.descricao}</ProductDetails>
         </UpperContainer>
         <BottomContainer>
-          <Price>R${props.preco}</Price>
-          <ActionButton>Remover</ActionButton>
+          <Price>R${props.main.price.toFixed(2)}</Price>
+          <ActionButton>Adicionar</ActionButton>
+
         </BottomContainer>
       </TextContainer>
     </CartCardContainer>

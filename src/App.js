@@ -48,7 +48,7 @@ const App = () => {
         <Route urlBase={urlBase} exact path="/carrinho">
           <Cart />
         </Route>
-        <Route urlBase={urlBase} exact path="/restaurante">
+        <Route urlBase={urlBase} exact path="/restaurante/:pageID">
           <Restaurante />
         </Route>
         <Route urlBase={urlBase} exact path="/busca">
