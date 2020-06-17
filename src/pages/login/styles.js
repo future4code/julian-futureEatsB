@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { TextField } from '@material-ui/core'
 import Password from '../../Components/InputPassword'
+import {Link} from 'react-router-dom'
 
 export const Container = styled.div`
     width: 100vw;
@@ -71,3 +72,8 @@ export const Senha = styled(Password)`
     margin-left: 4.44vw;
 
 `
+
+export const Linki = styled(Link)`
+    text-decoration: none;
+
+` 
