@@ -44,20 +44,6 @@ export const Input = styled(TextField)`
     margin-right: 4.44vw;
     margin-left: 4.44vw;
 `
-
-export const Botao = styled.button`
-    display: flex;
-    justify-content: center;
-    margin-top: 2.50vh;
-    margin-right: 4.44vw;
-    margin-left: 4.44vw;
-    width: 91.11vw;
-    height: 6.56vh;
-    background-color: #5cb646;
-    border: 0px;
-    text-align: center;
-    
-`
 export const Paragrafo2 = styled.p`
     display: flex;
     margin-top: 4.38vh;

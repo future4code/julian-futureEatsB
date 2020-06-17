@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: Roboto;
@@ -7,16 +7,16 @@
     font-size: 16px;
 }
 
-#tela-toda{
+#tela-toda {
     width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    overflow-x: hidden
+    overflow-x: hidden;
 }
 
-#container-procurar{
+#container-procurar {
     width: 328px;
     height: 56px;
     border-radius: 2px;
@@ -25,10 +25,10 @@
     flex-wrap: nowrap;
     justify-content: start;
     align-items: center;
-    margin: 8px 16px 
+    margin: 8px 16px;
 }
 
-#placeholder-buscar{
+#placeholder-buscar {
     width: 263.6px;
     height: 18px;
     font-family: Roboto;
@@ -39,13 +39,12 @@
     line-height: normal;
     letter-spacing: -0.39px;
     color: #d0d0d0;
-    
 }
 
-#icone-procurar{
+#icone-procurar {
     margin: 16px 17px;
 }
 
 #lista-restaurantes {
-    margin-bottom: 8px;
+    margin-bottom: 8vh;
 }

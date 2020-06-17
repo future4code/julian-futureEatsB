@@ -1,6 +1,8 @@
+
 import React, {useState} from 'react'
 import axios from 'axios'
 import { Container, Imagem, ContainerInput, Paragrafo, Input, Botao, Paragrafo2, Senha } from './styles'
+import Button from '../../Components/Button';
 import logo from '../../img/logo-invertido.png'
 import {Linki} from './styles'
 
@@ -50,9 +52,9 @@ const Login = () => {
         <Senha onChange={inputSenha} value={senha}  />
         </ContainerInput>
 
+
         <Botao onClick={enviarInputs} type="submit">Entrar</Botao>
         <Paragrafo2>Nao possui cadastro?<Linki to="/registro">&nbsp; Clique aqui</Linki></Paragrafo2>
-
     </Container>
      
     )

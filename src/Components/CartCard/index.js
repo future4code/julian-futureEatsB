@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import {
   CartCardContainer,
   CardImg,
@@ -8,20 +8,34 @@ import {
   Price,
   ActionButton,
   BottomContainer,
+  UpperContainer,
+  ContainerImg,
+  CabecalhoCard,
+  ContainerQuant,
+  ProductQuant
+
 } from "./styles";
+import { CartReducer } from "../../functions/CardReducer";
 
 function CartCard(props) {
   return (
     <CartCardContainer>
-      <CardImg src={props.foto} alt='Foto Produto' />
+      <ContainerImg>
+        <CardImg src={props.foto} alt="Foto Produto" />
+      </ContainerImg>
       <TextContainer>
-        <div>
-          <ProductName variant="h6">{props.nome}</ProductName>
+        <UpperContainer>
+          <CabecalhoCard>
+            <ProductName>{props.nome}</ProductName>
+            <ContainerQuant>
+              <ProductQuant>{props.quantidade}</ProductQuant>
+            </ContainerQuant>
+          </CabecalhoCard>
           <ProductDetails>{props.descricao}</ProductDetails>
-        </div>
+        </UpperContainer>
         <BottomContainer>
           <Price>R${props.preco}</Price>
-          <ActionButton>Adicionar</ActionButton>
+          <ActionButton>Remover</ActionButton>
         </BottomContainer>
       </TextContainer>
     </CartCardContainer>
