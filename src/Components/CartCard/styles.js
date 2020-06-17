@@ -7,6 +7,7 @@ import { Typography } from "@material-ui/core";
 export const CartCardContainer = styled.div`
   height: 112px;
   border: grey 1px solid;
+  margin: 1vh auto;
   width: 91.111vw;
   margin: 8px auto;
   border-radius: 8px;
@@ -52,11 +53,18 @@ export const ActionButton = styled.button`
 `;
 
 export const Price = styled.p`
-  font-size: 1.2em;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 5%;
 `;
 
 export const BottomContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  height: 24%;
+`;
+
+export const UpperContainer = styled.div`
+  height: 76%;
 `;

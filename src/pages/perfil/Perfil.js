@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import "./Perfil.css";
 import {
   BasicInfoText,
   AdressContainer,
@@ -10,17 +9,19 @@ import {
   LowerContainer,
   AdressLowerContainer,
   PedidosText,
+  ProfileContainer,
+  HistoricoContainer,
 } from "./styles";
 import { Edit } from "@material-ui/icons";
 import CardHistorico from "../../Components/CardHistorico";
-import Footer from '../../Components/Footer';
-import Header from '../../Components/Header';
+import Footer from "../../Components/Footer";
+import Header from "../../Components/Header";
 
 export function Perfil(props) {
   let history = useHistory();
 
   return (
-    <div className="telatoda">
+    <ProfileContainer>
       <Header title={"Meu perfil"} />
       <UpperContainer>
         <BasicInfoText>Bruna Oliveira</BasicInfoText>
@@ -41,10 +42,12 @@ export function Perfil(props) {
           </BotaoEdit>
         </AdressLowerContainer>
       </AdressContainer>
-      <PedidosText>Histórico de pedidos</PedidosText>
-      <CardHistorico />
+      <HistoricoContainer>
+        <PedidosText>Histórico de pedidos</PedidosText>
+        <CardHistorico />
+      </HistoricoContainer>
       <Footer page={"perfil"} />
-    </div>
+    </ProfileContainer>
   );
 }
 

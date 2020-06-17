@@ -11,7 +11,6 @@ import Restaurante from "./pages/restaurante";
 import Inicial from "./pages/PaginaInicial/PaginaInicial";
 import EditarCadastro from './pages/editarCadastro/EditarCadastro';
 import EditarEndereco from './pages/editarEndereco/EditarEndereco';
-
 import Busca from "./pages/busca/Busca";
 import Endereco from "./pages/endereco";
 
@@ -54,6 +53,9 @@ const App = () => {
         </Route>
         <Route urlBase={urlBase} exact path="/busca">
           <Busca />
+        </Route>
+        <Route urlBase={urlBase} exact path="/placeholder">
+          <PlaceholderCarrinho />
         </Route>
       </Switch>
     </BrowserRouter>

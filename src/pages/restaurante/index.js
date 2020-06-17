@@ -8,7 +8,6 @@ import {
   DetailsMidContainer,
   SectionText,
 } from "./styles";
-import FeedCard from "../../Components/FeedCard";
 import CartCard from "../../Components/CartCard";
 function Restaurante() {
   return (
