@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Imagem, ContainerInput, Paragrafo, Input, Botao, Paragrafo2, Senha } from './styles'
+import { Container, Imagem, ContainerInput, Paragrafo, Input, Paragrafo2, Senha } from './styles'
+import Button from '../../Components/Button';
 import logo from '../../img/logo-invertido.png'
 
 
@@ -18,7 +19,7 @@ const Login = () => {
 
         </ContainerInput>
 
-        <Botao>Entrar</Botao>
+        <Button title={"Entrar"} active={true} />
 
         <Paragrafo2>Nao possui cadastro? Clique aqui</Paragrafo2>
 
