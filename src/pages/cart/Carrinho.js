@@ -14,6 +14,7 @@ import Button from '../../Components/Button/index'
 
 
 const Carrinho = (props) => {
+  const history = useHistory();
   const [formaPagamento, setFormaPagamento] = useState('');
   const [botaoAtivado, setBotaoAtivado] = useState('')
   const [cart, setCart] = useState([
