@@ -56,7 +56,7 @@ export default function Password(props) {
             value={props.value}
             onChange={props.onChange}
             required
-            placeholder="Minino 6 caracteres"
+            placeholder={props.placeholder}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton

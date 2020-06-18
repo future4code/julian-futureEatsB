@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import styled from "styled-components";
 import axios from "axios";
 import {
   Container,
