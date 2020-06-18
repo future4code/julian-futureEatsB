@@ -12,8 +12,7 @@ import {
   ContainerImg,
   CabecalhoCard,
   ContainerQuant,
-  ProductQuant
-
+  ProductQuant,
 } from "./styles";
 import { CartReducer } from "../../functions/CardReducer";
 
@@ -25,14 +24,12 @@ function CartCard(props) {
       </ContainerImg>
       <TextContainer>
         <UpperContainer>
- walter5
           <ProductName variant="h6">{props.main.name}</ProductName>
           <ProductDetails>{props.descricao}</ProductDetails>
         </UpperContainer>
         <BottomContainer>
           <Price>R${props.main.price.toFixed(2)}</Price>
           <ActionButton>Adicionar</ActionButton>
-
         </BottomContainer>
       </TextContainer>
     </CartCardContainer>
