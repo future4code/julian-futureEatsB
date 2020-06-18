@@ -256,6 +256,7 @@ const Home = (props) => {
               {listaTipos}
             </Abas>
           </ContainerAbas>
+          
         </section>
 
         <section id="lista-restaurantes">
