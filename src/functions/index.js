@@ -17,3 +17,10 @@ export const useForm = (initialValues) => {
 
   return { form, onChange, resetForm };
 };
+
+export const autorização = (history) => {
+  const token = window.localStorage.getItem("token");
+  if (token === null) {
+    history.push("/Login");
+  }
+};
