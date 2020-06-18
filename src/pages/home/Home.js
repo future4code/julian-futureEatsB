@@ -64,7 +64,6 @@ const Home = (props) => {
 
   useEffect(() => {
     autorização(history);
-    getRestaurants().then((res) => setRestaurantes(res.data.restaurants));
   }, []);
 
   const goToBuscar = () => {

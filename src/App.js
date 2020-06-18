@@ -16,13 +16,21 @@ import Endereco from "./pages/endereco";
 import PlaceholderCarrinho from "./pages/placeholderCarrinho";
 import { CartReducer, initialState } from "./functions/CardReducer";
 import CartContext from './functions/CartContext';
+
+
 const urlBase= "https://us-central1-missao-newton.cloudfunctions.net/futureEatsB";
 
 const App = () => {
   const [state, dispatch] = useReducer(CartReducer, initialState);
 
   return (
-    <CartContext.Provider value={{restaurants: state.restaurants, cart: state.cart, products: state.products, dispatch: dispatch }}>
+    <CartContext.Provider value={{
+      endereco: state.endereco,
+      restaurants: state.restaurants, 
+      cart: state.cart, 
+      products: state.products, 
+      dispatch: dispatch 
+    }}>
       <BrowserRouter>
         <Switch>
           <Route urlBase={urlBase} exact path="/">

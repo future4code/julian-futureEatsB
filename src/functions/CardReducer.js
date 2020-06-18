@@ -1,4 +1,14 @@
 export const initialState = {
+  endereco: [
+    {
+      complement: "71",
+      state: "SP",
+      street: "R. Afonso Braz",
+      neighbourhood: "Vila N. Conceição",
+      number: "177",
+      city: "São Paulo",
+    }
+  ], 
   cart: [
     {
       "restaurant": {

@@ -6,7 +6,6 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { useHistory } from "react-router";
-import styled from "styled-components";
 import "./Carrinho.css";
 import CartCard from "../../Components/CartCard/index";
 import Button from "../../Components/Button/index";
@@ -22,24 +21,12 @@ const Carrinho = (props) => {
   const [valorFrete, setValorFrete] = useState(0);
   const [totalProdutos, setTotalProdutos] = useState(0);
 
-
-  
-  const [endereco, setEndereco] = useState({
-    complement: "71",
-    state: "SP",
-    street: "R. Afonso Braz",
-    neighbourhood: "Vila N. Conceição",
-    number: "177",
-    city: "São Paulo",
-  });
-
   useEffect(() => {
     autorização(history);
   }, []);
 
    useEffect(() => {
     defineValores();
-    defineTotalCarrinho()
    }, [cartContexto.cart]);
 
   useEffect(() => {
@@ -51,9 +38,7 @@ const Carrinho = (props) => {
   }, [formaPagamento, cartContexto.cart.length]);
 
   const handleChange = (event) => {
-    event.target.value === formaPagamento
-      ? setFormaPagamento("")
-      : setFormaPagamento(event.target.value);
+    setFormaPagamento(event.target.value);
   };
 
   const confirmaPedido = () => {
@@ -76,12 +61,7 @@ const Carrinho = (props) => {
     } 
   }
 
-  const defineTotalCarrinho = () =>{
-    let totalCarrinho = 0
-    totalCarrinho = valorFrete + cartTotal
-    setTotalProdutos(totalCarrinho)
-  }
-  
+  let totalCarrinho = valorFrete + totalProdutos
 
   let secaoMostrada;
   if (cartContexto.cart.length === 0) {
@@ -119,7 +99,7 @@ const Carrinho = (props) => {
       <section id="endereco">
         <p>Endereço de Entrega</p>
         <p>
-          {endereco.street}, {endereco.number}
+          {cartContexto.endereco[0].street}, {cartContexto.endereco[0].number}
         </p>
       </section>
 
@@ -128,7 +108,7 @@ const Carrinho = (props) => {
       <section id="frete">
         <p>{valorFrete === 0 ? "Frete Grátis" : `Frete R$${valorFrete}`}</p>
         <p>SUBTOTAL</p>
-        <p>R${totalProdutos}</p>
+        <p>R${totalCarrinho}</p>
       </section>
 
       <section id="pagamento">

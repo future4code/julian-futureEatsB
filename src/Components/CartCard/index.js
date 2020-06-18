@@ -34,7 +34,7 @@ function CartCard(props) {
         </UpperContainer>
         <BottomContainer>
           <Price>R${props.preco}</Price>
-          <ActionButton>Adicionar</ActionButton>
+          <ActionButton>remover</ActionButton>
         </BottomContainer>
       </TextContainer>
     </CartCardContainer>
