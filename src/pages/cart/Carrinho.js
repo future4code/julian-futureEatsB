@@ -60,16 +60,15 @@ const Carrinho = (props) => {
   })
 
   useEffect(() => {
-    const token = window.localStorage('token')
+    const token = window.localStorage.getItem('token')
     if (token === null) {
       history.push("/Login")
-    }
-  })
+    }}, [history])
 
   useEffect(() => {    
    if (formaPagamento !== '' && cart.length !== 0) {
      setBotaoAtivado(true)
-   } else if (formaPagamento === '' || cart.length === 0) {
+   } else {
      setBotaoAtivado(false)
    }
   }, [formaPagamento, cart.length]);

@@ -172,11 +172,10 @@ const Home = (props) => {
   ]);
 
   useEffect (()=>{
-    const token = window.localStorage('token')
+    const token = window.localStorage.getItem('token')
     if (token === null){
       history.push("/Login")
-    }
-  })
+    }}, [history])
 
     const goToBuscar = () => {
     history.push("/busca");

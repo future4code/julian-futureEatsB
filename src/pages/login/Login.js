@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import styled from "styled-components";
 import axios from "axios";
 import {
   Container,
@@ -17,7 +19,21 @@ import { Linki } from "./styles";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
+  const [botaoAtivo, setBotaoAtivo] = useState(false)
+  const history = useHistory();
+  
+  useEffect(() => {    
+   if (email !== '' && senha !== 0) {
+     setBotaoAtivo(true)
+   } else{
+     setBotaoAtivo(false)
+   }
+  }, [email, senha]);
+  
+  const goToHome = () =>{
+    history.push('/home')
+  }
+  
   const inputEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -40,6 +56,7 @@ const Login = () => {
       .then((response) => {
         console.log(response.data.token);
         localStorage.setItem("token", response.data.token);
+        goToHome()
       })
       .catch((error) => {
         console.log(error.response);
@@ -65,7 +82,7 @@ const Login = () => {
         <Senha onChange={inputSenha} value={senha} />
       </ContainerInput>
 
-      <Button onClick={enviarInputs} type="submit">
+      <Button active={botaoAtivo} title={'Entrar'} onClick={enviarInputs} type="submit">
         Entrar
       </Button>
       <Paragrafo2>
