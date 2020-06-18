@@ -1,4 +1,4 @@
-pimport React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Footer from "../../Components/Footer/index";
 import Header from "../../Components/Header/index";
 import Radio from "@material-ui/core/Radio";
@@ -18,8 +18,12 @@ const Carrinho = (props) => {
   const [formaPagamento, setFormaPagamento] = useState("");
   const [botaoAtivado, setBotaoAtivado] = useState("");
   const cartContexto = useContext(CartContext);
-  const [cart, setCart] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
+  const [valorFrete, setValorFrete] = useState(0);
+  const [totalProdutos, setTotalProdutos] = useState(0);
 
+
+  
   const [endereco, setEndereco] = useState({
     complement: "71",
     state: "SP",
@@ -32,6 +36,11 @@ const Carrinho = (props) => {
   useEffect(() => {
     autorização(history);
   }, []);
+
+   useEffect(() => {
+    defineValores();
+    defineTotalCarrinho()
+   }, [cartContexto.cart]);
 
   useEffect(() => {
     if (formaPagamento !== "" && cartContexto.cart.length !== 0) {
@@ -51,6 +60,29 @@ const Carrinho = (props) => {
     console.log("Funcionou Botão");
   };
 
+  const defineValores = () =>{
+    if (cartContexto.cart.length !== 0){
+      setValorFrete(cartContexto.cart[0].restaurant.shipping)
+      
+      const valores = cartContexto.cart[0].restaurant.products.map((produto) => {
+        return produto.price
+      })
+
+      let total = 0.00;
+      for (let i = 0; i < valores.length; i++) {
+        total += valores[i];
+        setTotalProdutos(total)
+      }
+    } 
+  }
+
+  const defineTotalCarrinho = () =>{
+    let totalCarrinho = 0
+    totalCarrinho = valorFrete + cartTotal
+    setTotalProdutos(totalCarrinho)
+  }
+  
+
   let secaoMostrada;
   if (cartContexto.cart.length === 0) {
     secaoMostrada = <p id="carrinho-vazio">Carrinho Vazio</p>;
@@ -68,6 +100,7 @@ const Carrinho = (props) => {
         );
       }
     );
+
     secaoMostrada = (
       <section>
         <section id="dados-restaurante-cart">
@@ -93,9 +126,9 @@ const Carrinho = (props) => {
       <section id="lista-carrinho">{secaoMostrada}</section>
 
       <section id="frete">
-        <p>Frete R$ 0,00</p>
+        <p>{valorFrete === 0 ? "Frete Grátis" : `Frete R$${valorFrete}`}</p>
         <p>SUBTOTAL</p>
-        <p>R$ 0,00</p>
+        <p>R${totalProdutos}</p>
       </section>
 
       <section id="pagamento">
