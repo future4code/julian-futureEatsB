@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import {
   BasicInfoText,
@@ -16,15 +16,14 @@ import { Edit } from "@material-ui/icons";
 import CardHistorico from "../../Components/CardHistorico";
 import Footer from "../../Components/Footer";
 import Header from "../../Components/Header";
+import { autorização } from "../../functions";
 
 export function Perfil(props) {
-  let history = useHistory();
+  const history = useHistory();
 
-    useEffect (()=>{
-    const token = window.localStorage.getItem('token')
-    if (token === null){
-      history.push("/Login")
-    }}, [history])
+  useEffect(() => {
+    autorização(history);
+  }, []);
 
   return (
     <ProfileContainer>

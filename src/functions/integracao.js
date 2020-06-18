@@ -23,3 +23,12 @@ export const getRestaurant = async (restID) => {
 
   return response.data;
 };
+
+export const getRestaurants = () => {
+  const token = window.localStorage.getItem("token");
+
+  const response = axios.get(`${baseUrl}/restaurants`, {
+    headers: { auth: token },
+  });
+  return response;
+};
