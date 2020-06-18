@@ -20,6 +20,13 @@ function Restaurante(props) {
   const [rest, setRest] = useState({});
 
   useEffect(() => {
+    const token = window.localStorage('token')
+    if (token === null) {
+      history.push("/Login")
+    }
+  })
+
+  useEffect(() => {
     getRestaurant(pathParams.pageID).then((res) => setRest(res.restaurant));
   }, []);
 

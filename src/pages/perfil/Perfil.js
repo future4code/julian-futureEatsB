@@ -20,6 +20,13 @@ import Header from "../../Components/Header";
 export function Perfil(props) {
   let history = useHistory();
 
+  useEffect(() => {
+    const token = window.localStorage('token')
+    if (token === null) {
+      history.push("/Login")
+    }
+  })
+
   return (
     <ProfileContainer>
       <Header title={"Meu perfil"} />

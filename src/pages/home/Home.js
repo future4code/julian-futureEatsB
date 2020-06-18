@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../../Components/Footer/index";
 import Header from "../../Components/Header/index";
 import { useHistory } from "react-router";
@@ -171,7 +171,14 @@ const Home = (props) => {
     },
   ]);
 
-  const goToBuscar = () => {
+  useEffect (()=>{
+    const token = window.localStorage('token')
+    if (token === null){
+      history.push("/Login")
+    }
+  })
+
+    const goToBuscar = () => {
     history.push("/busca");
   };
 

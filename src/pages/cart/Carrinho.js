@@ -58,6 +58,13 @@ const Carrinho = (props) => {
     "city": "São Paulo"
   })
 
+  useEffect(() => {
+    const token = window.localStorage('token')
+    if (token === null) {
+      history.push("/Login")
+    }
+  })
+
   useEffect(() => {    
    if (formaPagamento !== '' && cart.length !== 0) {
      setBotaoAtivado(true)
