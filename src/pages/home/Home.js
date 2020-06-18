@@ -1,23 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Footer from "../../Components/Footer/index";
 import Header from "../../Components/Header/index";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import "./Home.css";
-import {
-  createMuiTheme,
-  ThemeProvider,
-  withStyles,
-} from "@material-ui/core/styles";
+import { createMuiTheme, ThemeProvider, withStyles } from "@material-ui/core/styles";
 import CardRestaurant from "../../Components/FeedCard/index";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
 import SearchIcon from "../../img/procurar.svg";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { autorização } from "../../functions";
-import { getRestaurants } from "../../functions/integracao";
+import CardContext from "../../functions/CardContext";
 
 const Abas = withStyles({
   root: {
@@ -60,7 +53,7 @@ const ContainerAbas = styled.div`
 const Home = (props) => {
   let history = useHistory();
   const [tipoSelecionado, setTipoSelecionado] = useState("todos");
-  const [restaurantes, setRestaurantes] = useState([]);
+  const homeContexto = useContext(CardContext);
 
   useEffect(() => {
     autorização(history);
@@ -76,7 +69,7 @@ const Home = (props) => {
       : setTipoSelecionado(value);
   };
 
-  const restaurantesFiltrados = restaurantes
+  const restaurantesFiltrados = homeContexto.restaurantes
     .filter((restaurante) => {
       return restaurante.category === tipoSelecionado;
     })
@@ -87,12 +80,12 @@ const Home = (props) => {
           idRest={restaurante.id}
           nome={restaurante.name}
           demora={restaurante.deliveryTime}
-          frete={restaurante.shipping}
+          frete={restaurante.shipping.toFixed(2).replace(".", ",")}
         />
       );
     });
 
-  const restaurantesTotais = restaurantes.map((restaurante) => {
+  const restaurantesTotais = homeContexto.restaurantes.map((restaurante) => {
     return (
       <CardRestaurant
         foto={restaurante.logoUrl}
@@ -104,7 +97,7 @@ const Home = (props) => {
     );
   });
 
-  const listaTipos = restaurantes
+  const listaTipos = homeContexto.restaurantes
     .map((restaurante) => {
       return restaurante.category;
     })

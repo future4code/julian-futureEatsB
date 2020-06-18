@@ -15,18 +15,17 @@ import Busca from "./pages/busca/Busca";
 import Endereco from "./pages/endereco";
 import PlaceholderCarrinho from "./pages/placeholderCarrinho";
 import { CartReducer, initialState } from "./functions/CardReducer";
-import CartContext from './functions/CartContext';
+import CardContext from './functions/CardContext';
 
 
 const urlBase= "https://us-central1-missao-newton.cloudfunctions.net/futureEatsB";
 
 const App = () => {
   const [state, dispatch] = useReducer(CartReducer, initialState);
-
   return (
-    <CartContext.Provider value={{
+    <CardContext.Provider value={{
       endereco: state.endereco,
-      restaurants: state.restaurants, 
+      restaurantes: state.restaurants, 
       cart: state.cart, 
       products: state.products, 
       dispatch: dispatch 
@@ -71,7 +70,7 @@ const App = () => {
           </Route>
         </Switch>
       </BrowserRouter>
-    </CartContext.Provider>
+    </CardContext.Provider>
   );
 };
 

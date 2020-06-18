@@ -9,14 +9,14 @@ import { useHistory } from "react-router";
 import "./Carrinho.css";
 import CartCard from "../../Components/CartCard/index";
 import Button from "../../Components/Button/index";
-import CartContext from "../../functions/CartContext";
+import CardContext from "../../functions/CardContext";
 import { autorização } from "../../functions";
 
 const Carrinho = (props) => {
   const history = useHistory();
   const [formaPagamento, setFormaPagamento] = useState("");
   const [botaoAtivado, setBotaoAtivado] = useState("");
-  const cartContexto = useContext(CartContext);
+  const cartContexto = useContext(CardContext);
   const [cartTotal, setCartTotal] = useState(0);
   const [valorFrete, setValorFrete] = useState(0);
   const [totalProdutos, setTotalProdutos] = useState(0);
