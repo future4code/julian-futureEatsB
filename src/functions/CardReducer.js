@@ -48,6 +48,9 @@ export const initialState = {
       description: "Esfiha deliciosa, receita secreta do Habibs.",
     },
   ],
+  restaurants:[
+
+  ],
 };
 
 export function CartReducer(state, action) {

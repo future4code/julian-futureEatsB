@@ -22,7 +22,7 @@ const App = () => {
   const [state, dispatch] = useReducer(CartReducer, initialState);
 
   return (
-    <CartContext.Provider value={{cart: state.cart, products: state.products, dispatch: dispatch }}>
+    <CartContext.Provider value={{restaurants: state.restaurants, cart: state.cart, products: state.products, dispatch: dispatch }}>
       <BrowserRouter>
         <Switch>
           <Route urlBase={urlBase} exact path="/">
