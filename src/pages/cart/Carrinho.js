@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import Footer from '../../Components/Footer/index';
 import Header from '../../Components/Header/index';
 import Radio from '@material-ui/core/Radio';
@@ -9,46 +9,16 @@ import { useHistory } from "react-router";
 import styled from 'styled-components';
 import "./Carrinho.css";
 import CartCard from '../../Components/CartCard/index';
-import Button from '../../Components/Button/index'
-
+import Button from '../../Components/Button/index';
+import CartContext from '../../functions/CartContext';
 
 
 const Carrinho = (props) => {
   const history = useHistory();
   const [formaPagamento, setFormaPagamento] = useState('');
   const [botaoAtivado, setBotaoAtivado] = useState('')
-  const [cart, setCart] = useState([
-    {
-       "restaurant": {
-         "products": [
-           {
-               "id": "2wvQI3i8Zf2fMvkEq4Vo",
-               "category": "Refeição",
-               "description": "A melhor pedida é japonesa!",
-               "price": 24.3,
-               "photoUrl": "https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/51fed2ca-70a6-4069-a203-65536c856035/201808311212_sashi.png",
-               "name": "Sashimi Shiromi"
-           },
-           {
-               "id": "BmDOBMDVYDAomt7vQtuP",
-               "name": "Tempura udon",
-               "category": "Refeição",
-               "description": "A melhor pedida é japonesa!",
-               "price": 52.7,
-               "photoUrl": "https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/51fed2ca-70a6-4069-a203-65536c856035/201802031948_20717381.jpg"
-           },
-         ],
-           "id": "10",
-           "name": "Tadashii",
-           "shipping": 13,
-           "description": "Restaurante sofisticado busca o equilíbrio entre ingredientes que realçam a experiência da culinária japonesa.",
-           "address": "Travessa Reginaldo Pereira, 130 - Ibitinga",
-           "logoUrl": "http://soter.ninja/futureFoods/logos/tadashii.png",
-           "deliveryTime": 50,
-           "category": "Asiática"
-       }
-    }
-  ]);
+  const cartContexto = useContext(CartContext);
+  const [cart, setCart] = useState([])
 
   const [endereco, setEndereco] = useState({
     "complement": "71",
@@ -66,32 +36,35 @@ const Carrinho = (props) => {
     }}, [history])
 
   useEffect(() => {    
-   if (formaPagamento !== '' && cart.length !== 0) {
+   if (formaPagamento !== '' && cartContexto.cart.length !== 0) {
      setBotaoAtivado(true)
    } else {
      setBotaoAtivado(false)
    }
-  }, [formaPagamento, cart.length]);
+  }, [formaPagamento, cartContexto.cart.length]);
 
   const handleChange = (event) => {
-    setFormaPagamento(event.target.value);
+    event.target.value === formaPagamento ?
+      setFormaPagamento(""):
+      setFormaPagamento(event.target.value);
   }
+
   const confirmaPedido = () =>{
     console.log('Funcionou Botão')
   }
 
   let secaoMostrada 
-  if (cart.length === 0){
+  if (cartContexto.cart.length === 0){
     secaoMostrada = <p id='carrinho-vazio'>Carrinho Vazio</p>
   }else{
-    const produtosNatela = cart[0].restaurant.products.map((produto) =>{
+    const produtosNatela = cartContexto.cart[0].restaurant.products.map((produto) =>{
       return <CartCard quantidade={1} foto={produto.photoUrl} nome={produto.name} descricao={produto.description} preco={produto.price.toFixed(2).replace('.', ',')}/> 
     })
     secaoMostrada = <section>
       <section id='dados-restaurante-cart'>
-        <p>{cart[0].restaurant.name}</p>
-        <p>{cart[0].restaurant.address}</p>
-        <p>{cart[0].restaurant.deliveryTime} min</p>
+        <p>{cartContexto.cart[0].restaurant.name}</p>
+        <p>{cartContexto.cart[0].restaurant.address}</p>
+        <p>{cartContexto.cart[0].restaurant.deliveryTime} min</p>
       </section>
       {produtosNatela} 
     </section>
