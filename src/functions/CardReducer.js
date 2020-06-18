@@ -58,6 +58,7 @@ export const initialState = {
       description: "Esfiha deliciosa, receita secreta do Habibs.",
     },
   ],
+  
   restaurants:[
     {
       "id": "1",
