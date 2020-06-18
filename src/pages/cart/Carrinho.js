@@ -14,6 +14,7 @@ import Button from '../../Components/Button/index'
 
 
 const Carrinho = (props) => {
+  const history = useHistory();
   const [formaPagamento, setFormaPagamento] = useState('');
   const [botaoAtivado, setBotaoAtivado] = useState('')
   const [cart, setCart] = useState([
@@ -58,10 +59,16 @@ const Carrinho = (props) => {
     "city": "São Paulo"
   })
 
+  useEffect(() => {
+    const token = window.localStorage.getItem('token')
+    if (token === null) {
+      history.push("/Login")
+    }}, [history])
+
   useEffect(() => {    
    if (formaPagamento !== '' && cart.length !== 0) {
      setBotaoAtivado(true)
-   } else if (formaPagamento === '' || cart.length === 0) {
+   } else {
      setBotaoAtivado(false)
    }
   }, [formaPagamento, cart.length]);

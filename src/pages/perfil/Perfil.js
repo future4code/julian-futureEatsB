@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { useHistory } from "react-router";
 import {
   BasicInfoText,
@@ -19,6 +19,12 @@ import Header from "../../Components/Header";
 
 export function Perfil(props) {
   let history = useHistory();
+
+    useEffect (()=>{
+    const token = window.localStorage.getItem('token')
+    if (token === null){
+      history.push("/Login")
+    }}, [history])
 
   return (
     <ProfileContainer>
