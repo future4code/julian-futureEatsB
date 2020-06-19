@@ -1,34 +1,68 @@
 import axios from "axios";
 
-export const baseUrl =
-  "https://us-central1-missao-newton.cloudfunctions.net/futureEatsB";
+let baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/futureEatsB";
+let token = window.localStorage.getItem("token")
 
-export const getProducts = async (restaurantID) => {
-  const response = await axios.get(`${baseUrl}/restaurants/${restaurantID}`, {
-    headers: {
-      auth:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVYSnBGMFNhWTB2ZFVMaGZpdHdUIiwibmFtZSI6IlJpY2siLCJlbWFpbCI6InJpY2tAc2FuY2hlcy5jb20iLCJjcGYiOiI4ODguODg4Ljg4OC04OCIsImhhc0FkZHJlc3MiOnRydWUsImFkZHJlc3MiOiJSdWEgZG9zIGJvYnMsIDAsIDcxIC0gVmlsYSBOLiBDb25jZWnDp8OjbyIsImlhdCI6MTU5MjQwNDA1OX0.pfpNOxkrlezfhYKUYcZHR6M8zV637CjwDSAwrIbtT8k",
-    },
-  });
-  return response.data.restaurant.products;
+
+const buscaRestaurantes = (restaurantes) => ({
+  type: "PEGA_RESTAURANTES",
+  restaurants: restaurantes
+});
+
+const buscaProdutos = (produtos) => ({
+  type: "PEGA_PRODUTOS",
+  products: produtos
+});
+
+const buscaEndereco = (endereco) => ({
+  type: "PEGA_ENDERECO",
+  endereco: endereco
+});
+
+export const pegaRestaurantes = async (dispatch) => {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/restaurants`,
+      {
+        headers: {
+          auth: token
+        },
+      }
+    );
+    dispatch(buscaRestaurantes(response.data.restaurants));
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-export const getRestaurant = async (restID) => {
-  const token = window.localStorage.getItem("token");
-  const response = await axios.get(`${baseUrl}/restaurants/${restID}`, {
-    headers: {
-      auth: token,
-    },
-  });
-
-  return response.data;
+export const pegaProdutos = async (id, dispatch) => {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/restaurants/${id}`,
+      {
+        headers: {
+          auth: token
+        },
+      }
+    );
+    dispatch(buscaProdutos(response.data.restaurant));
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-export const getRestaurants = () => {
-  const token = window.localStorage.getItem("token");
-
-  const response = axios.get(`${baseUrl}/restaurants`, {
-    headers: { auth: token },
-  });
-  return response;
+export const pegaEndereço = async (dispatch) => {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/profile/address`,
+      {
+        headers: {
+          auth: token
+        },
+      }
+    );
+    dispatch(buscaEndereco(response.data.address));
+  } catch (err) {
+    console.log(err);
+  }
 };

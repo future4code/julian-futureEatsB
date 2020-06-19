@@ -6,32 +6,20 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { useHistory } from "react-router";
-import styled from "styled-components";
 import "./Carrinho.css";
 import CartCard from "../../Components/CartCard/index";
 import Button from "../../Components/Button/index";
-import CartContext from "../../functions/CartContext";
+import CardContext from "../../functions/CardContext";
 import { autorização } from "../../functions";
 
 const Carrinho = (props) => {
   const history = useHistory();
   const [formaPagamento, setFormaPagamento] = useState("");
   const [botaoAtivado, setBotaoAtivado] = useState("");
-  const cartContexto = useContext(CartContext);
+  const cartContexto = useContext(CardContext);
   const [cartTotal, setCartTotal] = useState(0);
   const [valorFrete, setValorFrete] = useState(0);
   const [totalProdutos, setTotalProdutos] = useState(0);
-
-
-  
-  const [endereco, setEndereco] = useState({
-    complement: "71",
-    state: "SP",
-    street: "R. Afonso Braz",
-    neighbourhood: "Vila N. Conceição",
-    number: "177",
-    city: "São Paulo",
-  });
 
   useEffect(() => {
     autorização(history);
@@ -39,21 +27,18 @@ const Carrinho = (props) => {
 
    useEffect(() => {
     defineValores();
-    defineTotalCarrinho()
    }, [cartContexto.cart]);
 
   useEffect(() => {
-    if (formaPagamento !== "" && cartContexto.cart.length !== 0) {
+    if (formaPagamento !== "" && cartContexto.cart.products.length !== 0) {
       setBotaoAtivado(true);
     } else {
       setBotaoAtivado(false);
     }
-  }, [formaPagamento, cartContexto.cart.length]);
+  }, [formaPagamento, cartContexto.cart.products.length]);
 
   const handleChange = (event) => {
-    event.target.value === formaPagamento
-      ? setFormaPagamento("")
-      : setFormaPagamento(event.target.value);
+    setFormaPagamento(event.target.value);
   };
 
   const confirmaPedido = () => {
@@ -61,10 +46,10 @@ const Carrinho = (props) => {
   };
 
   const defineValores = () =>{
-    if (cartContexto.cart.length !== 0){
-      setValorFrete(cartContexto.cart[0].restaurant.shipping)
+    if (cartContexto.cart.products.length !== 0){
+      setValorFrete(cartContexto.cart.shipping)
       
-      const valores = cartContexto.cart[0].restaurant.products.map((produto) => {
+      const valores = cartContexto.cart.products.map((produto) => {
         return produto.price
       })
 
@@ -76,26 +61,24 @@ const Carrinho = (props) => {
     } 
   }
 
-  const defineTotalCarrinho = () =>{
-    let totalCarrinho = 0
-    totalCarrinho = valorFrete + cartTotal
-    setTotalProdutos(totalCarrinho)
-  }
-  
+  let totalCarrinho = valorFrete + totalProdutos
 
   let secaoMostrada;
-  if (cartContexto.cart.length === 0) {
+  if (cartContexto.cart.products.length === 0) {
     secaoMostrada = <p id="carrinho-vazio">Carrinho Vazio</p>;
   } else {
-    const produtosNatela = cartContexto.cart[0].restaurant.products.map(
+    const produtosNatela = cartContexto.cart.products.map(
       (produto) => {
         return (
           <CartCard
-            quantidade={1}
+            quantidade={1}       /*Colocar função que pega quantidade carrinho*/
             foto={produto.photoUrl}
             nome={produto.name}
             descricao={produto.description}
             preco={produto.price.toFixed(2).replace(".", ",")}
+            tituloBotao={'remover'}
+            onClick={()=>{console.log('remover')}}
+            borda={'solid 2px #e02020'}
           />
         );
       }
@@ -104,9 +87,9 @@ const Carrinho = (props) => {
     secaoMostrada = (
       <section>
         <section id="dados-restaurante-cart">
-          <p>{cartContexto.cart[0].restaurant.name}</p>
-          <p>{cartContexto.cart[0].restaurant.address}</p>
-          <p>{cartContexto.cart[0].restaurant.deliveryTime} min</p>
+          <p>{cartContexto.cart.name}</p>
+          <p>{cartContexto.cart.address}</p>
+          <p>{cartContexto.cart.deliveryTime} min</p>
         </section>
         {produtosNatela}
       </section>
@@ -119,7 +102,7 @@ const Carrinho = (props) => {
       <section id="endereco">
         <p>Endereço de Entrega</p>
         <p>
-          {endereco.street}, {endereco.number}
+          {cartContexto.endereco.street}, {cartContexto.endereco.number}
         </p>
       </section>
 
@@ -128,7 +111,7 @@ const Carrinho = (props) => {
       <section id="frete">
         <p>{valorFrete === 0 ? "Frete Grátis" : `Frete R$${valorFrete}`}</p>
         <p>SUBTOTAL</p>
-        <p>R${totalProdutos}</p>
+        <p>R${totalCarrinho}</p>
       </section>
 
       <section id="pagamento">

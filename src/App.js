@@ -1,4 +1,4 @@
-import React, {useReducer} from "react";
+import React, {useReducer, useEffect} from "react";
 
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
@@ -14,15 +14,31 @@ import EditarEndereco from "./pages/editarEndereco/EditarEndereco";
 import Busca from "./pages/busca/Busca";
 import Endereco from "./pages/endereco";
 import PlaceholderCarrinho from "./pages/placeholderCarrinho";
-import { CartReducer, initialState } from "./functions/CardReducer";
-import CartContext from './functions/CartContext';
+import { CardReducer, initialState } from "./functions/CardReducer";
+import CardContext from './functions/CardContext';
+import { pegaRestaurantes } from './functions/integracao'
+import { pegaEndereço } from './functions/integracao'
+
+
 const urlBase= "https://us-central1-missao-newton.cloudfunctions.net/futureEatsB";
 
 const App = () => {
-  const [state, dispatch] = useReducer(CartReducer, initialState);
+  const [state, dispatch] = useReducer(CardReducer, initialState);
+
+  useEffect(() => {
+    pegaRestaurantes(dispatch);
+    pegaEndereço(dispatch)
+  }, [])
 
   return (
-    <CartContext.Provider value={{restaurants: state.restaurants, cart: state.cart, products: state.products, dispatch: dispatch }}>
+    <CardContext.Provider value={{
+      endereco: state.enderecoUser,
+      restaurantes: state.restaurants, 
+      cart: state.cart[0].restaurant, 
+      produtos: state.products, 
+      mostraAlert: state.mostraAlertAndamento,
+      dispatch: dispatch 
+    }}>
       <BrowserRouter>
         <Switch>
           <Route urlBase={urlBase} exact path="/">
@@ -63,7 +79,7 @@ const App = () => {
           </Route>
         </Switch>
       </BrowserRouter>
-    </CartContext.Provider>
+    </CardContext.Provider>
   );
 };
 

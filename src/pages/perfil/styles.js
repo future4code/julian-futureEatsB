@@ -1,13 +1,47 @@
 import styled from "styled-components";
-import { Typography } from "@material-ui/core";
 
-export const BasicInfoText = styled(Typography)``;
+export const NameText = styled.p`
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.108vw;
+  color: #000000;
+`;
+
+export const BasicInfoText = styled.p`
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.108vw;
+  color: #000000;
+  margin-bottom: 1.250vh;
+`;
+
+export const StreetText = styled.p`
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.108vw;
+  color: #000000;
+`; 
 
 export const AdressContainer = styled.div`
   background-color: #eeeeee;
-  padding: 1em;
-  height: 7vh;
-  margin: 1vh auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  margin-top: 1.250vh;
+  padding: 0 4.444vw;
+  height:11.875vh;
 `;
 
 export const BotaoEdit = styled.button`
@@ -18,32 +52,35 @@ export const BotaoEdit = styled.button`
 export const UpperContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 0 1em;
-  height: 5vh;
-  margin: 1vh auto;
+  margin: 2.5vh 4.444vw 0 4.444vw;
 `;
 
-export const Endereço = styled(Typography)`
+export const Endereço = styled.p`
   color: #b8b8b8;
 `;
 
 export const LowerContainer = styled.div`
-  padding: 0 1em;
-  height: 5vh;
-  margin: 1vh auto;
+  margin: 0 4.444vw;
 `;
 
 export const AdressLowerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1vh auto;
 `;
 
 export const PedidosText = styled.p`
   border-bottom: 1px solid black;
-  margin: 1em;
-  font-size: 1.2em;
+  padding-bottom: 1.25vh;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.108vw;
+  color: #000000;
+  margin: 2.5vh 4.444vw 0 4.444vw; 
 `;
 
 export const ProfileContainer = styled.div`
@@ -54,5 +91,4 @@ export const ProfileContainer = styled.div`
 export const HistoricoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
 `;
