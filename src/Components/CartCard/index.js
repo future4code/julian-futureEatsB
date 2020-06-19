@@ -26,7 +26,7 @@ function CartCard(props) {
         <UpperContainer>
           <CabecalhoCard>
             <ProductName>{props.nome}</ProductName>
-            <ContainerQuant>
+            <ContainerQuant display={props.tituloBotao === 'adicionar' ? 'none' : 'flex'}>
               <ProductQuant>{props.quantidade}</ProductQuant>
             </ContainerQuant>
           </CabecalhoCard>
@@ -34,7 +34,13 @@ function CartCard(props) {
         </UpperContainer>
         <BottomContainer>
           <Price>R${props.preco}</Price>
-          <ActionButton>remover</ActionButton>
+          <ActionButton 
+            borda={props.borda} 
+            cor={props.tituloBotao === 'adicionar' ? '#5cb646' : '#e02020'} 
+            onClick={props.onClick}
+          >
+            {props.tituloBotao}
+          </ActionButton>
         </BottomContainer>
       </TextContainer>
     </CartCardContainer>

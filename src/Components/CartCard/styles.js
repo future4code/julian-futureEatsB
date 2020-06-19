@@ -57,7 +57,7 @@ export const ProductDetails = styled.p`
 `;
 
 export const ActionButton = styled.button`
-  border: 2px #e02020 solid;
+  border: ${props => props.borda};
   background-color: white;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -71,7 +71,7 @@ export const ActionButton = styled.button`
   line-height: normal;
   letter-spacing: -0.29px;
   text-align: center;
-  color: #e02020;
+  color: ${props => props.cor};
 `;
 
 export const ContainerQuant = styled.div `
@@ -79,7 +79,7 @@ export const ContainerQuant = styled.div `
   height: 9.167vw;
   border-radius: 0 8px 0 8px;
   border: solid 2px #5cb646;
-  display: flex;
+  display: ${props => props.display};
   justify-content: center;
   align-items: center;
   z-index: 2; 

@@ -1,68 +1,82 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   RestauranteContainer,
   UpperRestaurantContainer,
   ResturanteImg,
   RestaurantTitle,
   RestaurantDetails,
+  RestaurantDetailsFrete,
   DetailsMidContainer,
   SectionText,
+  ContainerImg
 } from "./styles";
 import CartCard from "../../Components/CartCard";
 import { useParams, useHistory } from "react-router-dom";
-import { getRestaurant } from "../../functions/integracao";
 import { autorização } from "../../functions";
+import CardContext from "../../functions/CardContext";
+import { pegaProdutos } from '../../functions/integracao'
 
 function Restaurante(props) {
   const pathParams = useParams();
-
   const history = useHistory();
-
-  const [rest, setRest] = useState({});
+  const restContexto = useContext(CardContext);
+  const [quantidade, setQuantidade] = useState(0)
 
   useEffect(() => {
     autorização(history);
   }, []);
 
   useEffect(() => {
-    getRestaurant(pathParams.pageID).then((res) => setRest(res.restaurant));
-  }, []);
+    pegaProdutos(pathParams.pageID, restContexto.dispatch)
+  }, [])
+  
+  const adicionarCarrinho = (idProduct) => {
+    console.log('adicionar', idProduct)
+  }
 
-  const teste = () => {
-    console.log(rest);
-  };
+  const removerCarrinho = (idProduct) => {
+    console.log('remover', idProduct)
+  }
+
   return (
     <RestauranteContainer>
       <UpperRestaurantContainer>
-        <ResturanteImg src="https://images.unsplash.com/photo-1500353391678-d7b57979d6d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" />
-        <RestaurantTitle variant="h5" onClick={teste}>
-          {rest.name}
-        </RestaurantTitle>
+        <ContainerImg><ResturanteImg src={restContexto.produtos.logoUrl} alt='Logo Restaurante'/></ContainerImg>
+        <RestaurantTitle>{restContexto.produtos.name}</RestaurantTitle>
       </UpperRestaurantContainer>
-      <RestaurantDetails>{rest.category}</RestaurantDetails>
+      <RestaurantDetails>{restContexto.produtos.category}</RestaurantDetails>
       <DetailsMidContainer>
-        <RestaurantDetails>{rest.deliveryTime}mins</RestaurantDetails>
-        <RestaurantDetails>
+        <RestaurantDetails>{restContexto.produtos.deliveryTime}mins</RestaurantDetails>
+        <RestaurantDetailsFrete>
           Frete R$
-          {rest.shipping === undefined ? "..." : rest.shipping.toFixed(2)}
-        </RestaurantDetails>
+          {restContexto.produtos.shipping === undefined ? "..." : restContexto.produtos.shipping.toFixed(2)}
+        </RestaurantDetailsFrete>
       </DetailsMidContainer>
-      <RestaurantDetails>{rest.address}</RestaurantDetails>
+      <RestaurantDetails>{restContexto.produtos.address}</RestaurantDetails>
       <SectionText>Principais</SectionText>
-      {rest.products === undefined ? (
+      {restContexto.produtos.products === undefined ? (
         <p>...</p>
       ) : (
-        rest.products
-          .filter((product) => product.category !== "Bebida")
-          .map((mainProducts) => {
-            return <CartCard main={mainProducts} />;
+        restContexto.produtos.products
+//          .filter((product) => product.category !== "Bebida")
+          .map((produto) => {
+            return <CartCard
+              quantidade={quantidade === 0? '' : quantidade}
+              foto={produto.photoUrl}
+              nome={produto.name}
+              descricao={produto.description}
+              preco={produto.price.toFixed(2).replace(".", ",")}
+              tituloBotao={quantidade === 0? 'adicionar' : 'remover'}
+              onClick={() => {quantidade === 0 ? adicionarCarrinho(produto.id) : removerCarrinho(produto.id) }}
+              borda={quantidade === 0 ? 'solid 2px #5cb646' : 'solid 2px #e02020'}
+              />;
           })
       )}
       <SectionText>Acompanhamentos</SectionText>
-      {rest.products === undefined ? (
+      {restContexto.produtos.products === undefined ? (
         <p>...</p>
       ) : (
-        rest.products
+        restContexto.produtos.products
           .filter((product) => product.category === "Bebida")
           .map((acompanhamentos) => {
             return <CartCard main={acompanhamentos} />;
