@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router";
 import {
   NameText,
@@ -12,38 +12,54 @@ import {
   ProfileContainer,
   HistoricoContainer,
   BasicInfoText,
-  StreetText
+  StreetText,
 } from "./styles";
 import { EditOutlined } from "@material-ui/icons";
 import CardHistorico from "../../Components/CardHistorico";
 import Footer from "../../Components/Footer";
 import Header from "../../Components/Header";
 import { autorização } from "../../functions";
+import { getProfile, pegaEndereço } from "../../functions/integracao";
 
 export function Perfil(props) {
   const history = useHistory();
 
+  const [profile, setProfile] = useState({});
+
+  const [address, setAddress] = useState({});
+
   useEffect(() => {
     autorização(history);
+
+    getProfile().then((response) => setProfile(response));
+
+    pegaEndereço().then((res) => setAddress(res));
   }, []);
 
   return (
     <ProfileContainer>
       <Header title={"Meu perfil"} />
+
       <UpperContainer>
-        <NameText>Bruna Oliveira</NameText>
+        <NameText>{profile.name}</NameText>
         <BotaoEdit onClick={() => history.push("/perfil/cadastro")}>
           <EditOutlined />
         </BotaoEdit>
       </UpperContainer>
       <LowerContainer>
-        <BasicInfoText>brunoliveira@gmail</BasicInfoText>
-        <BasicInfoText>888.888.888-88</BasicInfoText>
+        <BasicInfoText>{profile.email}</BasicInfoText>
+        <BasicInfoText>{profile.cpf}</BasicInfoText>
       </LowerContainer>
       <AdressContainer>
         <Endereço>Endereço cadastrado</Endereço>
         <AdressLowerContainer>
-          <StreetText>Rua dos bobos, no 0</StreetText>
+          {address.street === undefined ? (
+            <p>...</p>
+          ) : (
+            <StreetText>
+              {address.street} nº{address.number}, {address.neighbourhood}
+            </StreetText>
+          )}
           <BotaoEdit onClick={() => history.push("/perfil/endereco")}>
             <EditOutlined />
           </BotaoEdit>

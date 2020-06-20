@@ -1,17 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../Components/Button";
 import Header from "../../Components/Header";
 import { Text } from "./styles";
 import { useForm, autorização } from "../../functions";
 import "./EditarEndereco.css";
 import { useHistory } from "react-router-dom";
+import { pegaEndereço, upDateAddress } from "../../functions/integracao";
 
 const EditarCadastro = () => {
   const history = useHistory();
-
-  useEffect(() => {
-    autorização(history);
-  }, []);
 
   const { form, onChange, resetForm } = useForm({
     logradouro: "",
@@ -22,17 +19,36 @@ const EditarCadastro = () => {
     estado: "",
   });
 
+  useEffect(() => {
+    autorização(history);
+
+    pegaEndereço().then((res) => {
+      form.logradouro = res.street;
+      form.numero = res.number;
+      form.complemento = res.complement;
+      form.bairro = res.neighbourhood;
+      form.cidade = res.city;
+      form.estado = res.state;
+    });
+  }, []);
+
   const handleInput = (event) => {
     onChange(event.target.name, event.target.value);
   };
 
-  const onClickBotao = (event) => {
+  const onClickBotao = (event, form) => {
     event.preventDefault();
     alert("Dados atualizados");
+
+    upDateAddress(form);
+
+    resetForm();
   };
+
   return (
     <div className={"telatoda"}>
       <Header title={"Editar"} back />
+
       <form onSubmit={onClickBotao}>
         <Text
           label={"Logradouro"}
