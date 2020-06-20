@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import Button from "../../Components/Button";
 import Header from "../../Components/Header";
@@ -29,10 +28,15 @@ const EditarCadastro = () => {
     onChange(event.target.name, event.target.value);
   };
 
-  const onClickBotao = (event, form) => {
+  const onClickBotao = (event) => {
     event.preventDefault();
 
-    upDateProfile(form);
+    const body = {
+      cpf: form.cpf,
+      email: form.email,
+      name: form.name,
+    };
+    upDateProfile(body);
   };
 
   const teste = () => {

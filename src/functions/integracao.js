@@ -69,8 +69,8 @@ export const getProfile = async () => {
 export const upDateProfile = (form) => {
   const token = window.localStorage.getItem("token");
 
-  console.log("o form está assim", form);
   const body = form;
+
   axios
     .put(`${baseUrl}/profile`, body, {
       headers: { "Content-Type": "application/json", auth: token },
@@ -87,6 +87,7 @@ export const upDateAddress = (form) => {
     .put(`${baseUrl}/address`, body, {
       headers: { auth: token },
     })
-    .then((res) => console.log(res.data))
-    .catch((err) => console.log(err.data));
+    .then((res) => window.localStorage.setItem("token", res.data.token));
+
+  window.alert("Cadastro atualizado com sucesso");
 };
