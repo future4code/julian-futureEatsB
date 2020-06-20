@@ -4,13 +4,16 @@ import Header from "../../Components/Header/index";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import "./Home.css";
-import { createMuiTheme, ThemeProvider, withStyles } from "@material-ui/core/styles";
+import { makeStyles, createMuiTheme, ThemeProvider, withStyles } from "@material-ui/core/styles";
 import CardRestaurant from "../../Components/FeedCard/index";
-import SearchIcon from "../../img/procurar.svg";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { autorização } from "../../functions";
 import CardContext from "../../functions/CardContext";
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
+import clsx from 'clsx';
 
 const Abas = withStyles({
   root: {
@@ -34,6 +37,13 @@ const Aba = styled(Tab)`
   }
 `;
 
+const useStyles = makeStyles((theme) => ({
+  textField: {
+    width: '91.111vw',
+    marginTop: '1.25vh',
+  },
+}));
+
 const MyTheme = createMuiTheme({
   palette: {
     primary: {
@@ -52,6 +62,7 @@ const ContainerAbas = styled.div`
 
 const Home = (props) => {
   let history = useHistory();
+  const classes = useStyles();
   const [tipoSelecionado, setTipoSelecionado] = useState("todos");
   const homeContexto = useContext(CardContext);
 
@@ -119,12 +130,18 @@ const Home = (props) => {
     <ThemeProvider theme={MyTheme}>
       <div id="tela-toda">
         <Header title={"FutureEats"} />
-        <section id="container-procurar" onClick={goToBuscar}>
-          {" "}
-          {/* Nota: Fiz em div mesmo porque ele não procura, pelo que entendi no Zeplin, quando clica vai direto para a página de busca. O input então fica na página de busca */}
-          <img src={SearchIcon} alt="iconeProcurar" id="icone-procurar" />
-          <p id="placeholder-buscar">Restaurante</p>
-        </section>
+        
+        <OutlinedInput
+          className={clsx(classes.textField)}
+          variant="outlined"
+          placeholder="Restaurantes..."
+          onClick={goToBuscar}
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          }
+        />
 
         <section>
           <ContainerAbas position="static">

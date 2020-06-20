@@ -4,12 +4,11 @@ import Header from "../../Components/Header";
 import { Text } from "./styles";
 import { useForm, autorização } from "../../functions";
 import "./EditarEndereco.css";
+import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { pegaEndereço, upDateAddress } from "../../functions/integracao";
 
 const EditarCadastro = () => {
-  const history = useHistory();
-
   const { form, onChange, resetForm } = useForm({
     logradouro: "",
     numero: "",
@@ -35,6 +34,36 @@ const EditarCadastro = () => {
   const handleInput = (event) => {
     onChange(event.target.name, event.target.value);
   };
+=======
+  const [ logradouro, setLogradouro ] = useState("");
+  const [ numero, setNumero ] = useState("");
+  const [ complemento, setComplemento ] = useState("");
+  const [ bairro, setBairro ] = useState("");
+  const [ cidade, setCidade ] = useState("");
+  const [ estado, setEstado ] = useState("");
+
+  const history = useHistory();
+  
+  useEffect(() => {
+    autorização(history);
+    axios
+        .get("https://us-central1-missao-newton.cloudfunctions.net/futureEatsB/profile/address", {
+            headers: {
+                auth: localStorage.getItem("token")
+            }
+        })
+        .then((response) => {
+            setLogradouro(response.data.address.street);
+            setNumero(response.data.address.number);
+            setComplemento(response.data.address.complement);
+            setBairro(response.data.address.neighbourhood);
+            setCidade(response.data.address.city);
+            setEstado(response.data.address.state);
+        })
+        .catch(error => {
+            alert("Erro na obtenção dos dados");
+        })
+  }, []);
 
   const onClickBotao = (event, form) => {
     event.preventDefault();
@@ -45,6 +74,16 @@ const EditarCadastro = () => {
     resetForm();
   };
 
+    const body = {
+      street: logradouro,
+      number: numero,
+      complement: complemento,
+      neighbourhood: bairro,
+      city: cidade,
+      state: estado    
+    }
+    }
+
   return (
     <div className={"telatoda"}>
       <Header title={"Editar"} back />
@@ -52,48 +91,49 @@ const EditarCadastro = () => {
       <form onSubmit={onClickBotao}>
         <Text
           label={"Logradouro"}
-          value={form.logradouro}
+          value={logradouro}
           name={"logradouro"}
-          onChange={handleInput}
+          onChange={onChangeLogradouro}
           variant={"outlined"}
           required
         />
         <Text
           label={"Número"}
-          value={form.numero}
+          value={numero}
           name={"numero"}
-          onChange={handleInput}
+          onChange={onChangeNumero}
+          min={1}
           variant={"outlined"}
           required
         />
         <Text
           label={"Complemento"}
-          value={form.complemento}
+          value={complemento}
           name={"complemento"}
-          onChange={handleInput}
+          onChange={onChangeComplemento}
           variant={"outlined"}
         />
         <Text
           label={"Bairro"}
-          value={form.bairro}
+          value={bairro}
           name={"bairro"}
-          onChange={handleInput}
+          onChange={onChangeBairro}
           variant={"outlined"}
           required
         />
         <Text
           label={"Cidade"}
-          value={form.cidade}
+          value={cidade}
           name={"cidade"}
-          onChange={handleInput}
+          onChange={onChangeCidade}
           variant={"outlined"}
           required
         />
         <Text
           label={"Estado"}
-          value={form.estado}
+          value={estado}
           name={"estado"}
-          onChange={handleInput}
+          onChange={onChangeEstado}
           variant={"outlined"}
           required
         />
