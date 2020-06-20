@@ -30,7 +30,7 @@ const App = () => {
     pegaEndereço(dispatch)
   }, [])
 
-  return (
+   return (
     <CardContext.Provider value={{
       endereco: state.enderecoUser,
       restaurantes: state.restaurants, 

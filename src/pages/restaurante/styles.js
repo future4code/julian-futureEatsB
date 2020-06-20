@@ -1,5 +1,30 @@
 import styled from "styled-components";
-import { Typography } from "@material-ui/core";
+import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+
+export const TituloDialog = styled.p`
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.108px;
+  text-align: center;
+  color: #000000;
+  margin: 6.719vh 9vw 4.844vh 9vw;
+`
+
+export const Botao = styled(Button)`
+  span {
+    color: #5cb646;
+  }
+`
+
+export const SelecionaQtdade = styled(Select)`
+  width: 68vw;
+`
+
 
 export const RestauranteContainer = styled.div`
   overflow-x: hidden;
