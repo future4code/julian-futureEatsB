@@ -6,9 +6,35 @@ import { useForm, autorização } from "../../functions";
 import "./EditarEndereco.css";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
+import { pegaEndereço, upDateAddress } from "../../functions/integracao";
 
 const EditarCadastro = () => {
+  const { form, onChange, resetForm } = useForm({
+    logradouro: "",
+    numero: "",
+    complemento: "",
+    bairro: "",
+    cidade: "",
+    estado: "",
+  });
 
+  useEffect(() => {
+    autorização(history);
+
+    pegaEndereço().then((res) => {
+      form.logradouro = res.street;
+      form.numero = res.number;
+      form.complemento = res.complement;
+      form.bairro = res.neighbourhood;
+      form.cidade = res.city;
+      form.estado = res.state;
+    });
+  }, []);
+
+  const handleInput = (event) => {
+    onChange(event.target.name, event.target.value);
+  };
+=======
   const [ logradouro, setLogradouro ] = useState("");
   const [ numero, setNumero ] = useState("");
   const [ complemento, setComplemento ] = useState("");
@@ -39,32 +65,15 @@ const EditarCadastro = () => {
         })
   }, []);
 
-  const onChangeLogradouro = (event) => {
-    setLogradouro(event.target.value);
-  }
-
-  const onChangeNumero = (event) => {
-    setNumero(event.target.value);
-  }
-
-  const onChangeComplemento = (event) => {
-    setComplemento(event.target.value);
-  }
-  
-  const onChangeBairro = (event) => {
-    setBairro(event.target.value);
-  }
-  
-  const onChangeCidade = (event) => {
-    setCidade(event.target.value);
-  }
-  
-  const onChangeEstado = (event) => {
-    setEstado(event.target.value);
-  }
-
-  const onClickBotao = (event) => {
+  const onClickBotao = (event, form) => {
     event.preventDefault();
+    alert("Dados atualizados");
+
+    upDateAddress(form);
+
+    resetForm();
+  };
+
     const body = {
       street: logradouro,
       number: numero,
@@ -73,25 +82,12 @@ const EditarCadastro = () => {
       city: cidade,
       state: estado    
     }
-
-    axios
-      .put("https://us-central1-missao-newton.cloudfunctions.net/futureEatsB/address", body, {
-          headers: {
-              auth: localStorage.getItem("token")
-          }
-      })
-      .then( response => {
-          localStorage.setItem("token", response.data.token)
-          history.goBack();
-      })
-      .catch(error => {
-          alert("Erro na atualização dos dados");
-      })
-  }
+    }
 
   return (
     <div className={"telatoda"}>
       <Header title={"Editar"} back />
+
       <form onSubmit={onClickBotao}>
         <Text
           label={"Logradouro"}
