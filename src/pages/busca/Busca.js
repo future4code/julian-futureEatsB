@@ -14,9 +14,6 @@ import { makeStyles, createMuiTheme, ThemeProvider, withStyles } from "@material
 /*comentario de teste*/
 
 const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
   textField: {
     width: '91.111vw',
     marginTop: '1.25vh',
@@ -70,7 +67,7 @@ const Busca = (props) => {
      <Header title={'Busca'} back/>
       
         <OutlinedInput
-            className={clsx(classes.margin, classes.textField)}
+            className={clsx(classes.textField)}
             variant="outlined"
             placeholder="Restaurantes..."
             type="text"
