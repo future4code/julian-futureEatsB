@@ -16,6 +16,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import clsx from 'clsx';
 import Loading from '../../Components/Loading/Loading';
 import Alerta from './../../Components/Alert/Alert';
+import { pegaAndamentoPedido } from '../../functions/integracao'
+import axios from "axios";
 
 const Abas = withStyles({
   root: {
@@ -65,6 +67,7 @@ const ContainerAbas = styled.div`
 
 const Home = (props) => {
   let history = useHistory();
+  const [pedidoAndamento, setPedidoEmAndamento] = useState();
   const classes = useStyles();
   const [tipoSelecionado, setTipoSelecionado] = useState("todos");
   const homeContexto = useContext(CardContext);
@@ -74,11 +77,52 @@ const Home = (props) => {
     autorização(history);
   }, []);
 
+
   useEffect(() => {
     homeContexto.restaurantes.length !== 0 ? 
     setOpenLoad(false):
     setOpenLoad(true)
   }, [homeContexto.restaurantes]);
+
+  useEffect(() =>{
+    pegaAndamentoPedido()
+    
+  }, [])
+
+
+  useEffect(() => {
+    pegaAndamentoPedido()
+    
+    const interval = setInterval(() => {
+
+      if (pedidoAndamento === null ){
+        clearInterval( interval );
+        setPedidoEmAndamento(null)
+      }else{
+        console.log(pedidoAndamento)
+      }
+    }, 60000);
+    return () => clearInterval(interval);
+  }, []);
+    
+  const Data = new Date(new Date(1592777753939))
+
+  console.log(Data)
+
+  const pegaAndamentoPedido = async (dispatch) => {
+    let token = window.localStorage.getItem("token")
+    try {
+    const response = await axios.get(`https://us-central1-missao-newton.cloudfunctions.net/futureEatsB/active-order`, {
+      headers: {
+        auth: token,
+      },
+      });
+      setPedidoEmAndamento(response.data.order);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
 
   const goToBuscar = () => {
     history.push("/busca");
@@ -173,9 +217,10 @@ const Home = (props) => {
             : restaurantesFiltrados}
         </section>
 
+        {pedidoAndamento !== null && pedidoAndamento !== undefined ? <Alerta preco={pedidoAndamento.totalPrice} nome={pedidoAndamento.restaurantName}/> : ''}
+
         <Footer page={"home"} />
 
-        {homeContexto.pedido !== undefined ? <Alerta /> : ""}
         <Loading openLoading={openLoad}/>
       </div>
     </ThemeProvider>

@@ -14,7 +14,7 @@ import EditarEndereco from "./pages/editarEndereco/EditarEndereco";
 import Busca from "./pages/busca/Busca";
 import Endereco from "./pages/endereco";
 import PlaceholderCarrinho from "./pages/placeholderCarrinho";
-import { CardReducer, initialState } from "./functions/CardReducer";
+import { CardReducer, initialState,  } from "./functions/CardReducer";
 import CardContext from './functions/CardContext';
 import { pegaRestaurantes } from './functions/integracao'
 import { pegaEndereço } from './functions/integracao'
@@ -29,6 +29,8 @@ const App = () => {
     pegaRestaurantes(dispatch);
     pegaEndereço(dispatch)
   }, [])
+
+//  console.log(state.andamentoPedido)
 
   return (
     <CardContext.Provider value={{
