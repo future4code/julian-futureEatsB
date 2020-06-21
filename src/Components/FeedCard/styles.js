@@ -23,8 +23,9 @@ export const ProductImg = styled.img`
 export const ContainerImg = styled.div`
   width: 100%;
   overflow: hidden;
-  height: 120px;
+  height: 60%;
 `;
+
 export const StoreName = styled(Typography)`
   height: 18px;
   font-family: Roboto;
