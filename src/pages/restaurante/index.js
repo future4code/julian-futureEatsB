@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { createMuiTheme, ThemeProvider, withStyles } from "@material-ui/core/styles";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import {
   RestauranteContainer,
   UpperRestaurantContainer,
@@ -35,7 +35,6 @@ const MyTheme = createMuiTheme({
     primary: {
       main: "#b8b8b8",
       contrastText: "#b8b8b8",
-      light: "rgba(92, 182, 70, 0.5)",
     },
   },
 });

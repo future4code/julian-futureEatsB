@@ -1,8 +1,18 @@
-import React, {useState} from 'react'
-import axios from 'axios'
-import {Container, Input, Paragrafo, ContainerInput, Botao} from './styles'
-import Header from '../../Components/Header/index'
+import React, {useState} from 'react';
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import axios from 'axios';
+import {Container, Input, Paragrafo, ContainerInput, Botao} from './styles';
+import Header from '../../Components/Header/index';
 import { useHistory } from "react-router";
+
+const MyTheme = createMuiTheme({
+    palette: {
+        primary: {
+            main: "#b8b8b8",
+            contrastText: "#b8b8b8",
+        },
+    },
+});
 
 
 const Endereco = () =>{
@@ -72,25 +82,26 @@ const Endereco = () =>{
     }
 
     return(
-        <Container>
-            <Header back/>
-            <Paragrafo>Meu endereço</Paragrafo>
+        <ThemeProvider theme={MyTheme}>
+            <Container>
+                <Header back/>
+                <Paragrafo>Meu endereço</Paragrafo>
+    
+                <ContainerInput>
+                <Input onChange={inputLogradouro} label="logradouro" placeholder="Rua / Av." variant="outlined" required/>
+                <Input onChange={inputNumero} label="numero" placeholder="numero" variant="outlined" required type="number"/>
+                <Input onChange={inputComplemento} label="complemento" placeholder="Apto. Bloco" variant="outlined" required/>
+                <Input onChange={inputBairro} label="bairro" placeholder="Bairro" variant="outlined" required/>
+                <Input onChange={inputCidade} label="cidade" placeholder="Cidade" variant="outlined" required/>
+                <Input onChange={inputEstado} label="estado" placeholder="Estado" variant="outlined" required/>
+    
+                <Botao onClick={enviarInput}>Salvar</Botao>
+    
+                </ContainerInput>
+            </Container>
 
-            <ContainerInput>
-            <Input onChange={inputLogradouro} label="logradouro" placeholder="Rua / Av." variant="outlined" required/>
-            <Input onChange={inputNumero} label="numero" placeholder="numero" variant="outlined" required type="number"/>
-            <Input onChange={inputComplemento} label="complemento" placeholder="Apto. Bloco" variant="outlined" required/>
-            <Input onChange={inputBairro} label="bairro" placeholder="Bairro" variant="outlined" required/>
-            <Input onChange={inputCidade} label="cidade" placeholder="Cidade" variant="outlined" required/>
-            <Input onChange={inputEstado} label="estado" placeholder="Estado" variant="outlined" required/>
-
-            <Botao onClick={enviarInput}>Salvar</Botao>
-
-            </ContainerInput>
-        </Container>
-
+        </ThemeProvider>
     )
-
 }
 
 export default Endereco 

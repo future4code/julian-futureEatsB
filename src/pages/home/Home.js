@@ -40,6 +40,7 @@ const Aba = styled(Tab)`
 const useStyles = makeStyles((theme) => ({
   textField: {
     width: '91.111vw',
+    height: '8.75vh',
     marginTop: '1.25vh',
   },
 }));

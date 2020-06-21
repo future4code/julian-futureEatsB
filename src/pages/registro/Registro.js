@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import axios from "axios";
 import {
   Container,
@@ -12,6 +13,15 @@ import Header from "../../Components/Header/index";
 import logo from "../../img/logo-invertido.png";
 import Password from "../../Components/InputPassword";
 import { useHistory } from "react-router";
+
+const MyTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#b8b8b8",
+      contrastText: "#b8b8b8",
+    },
+  },
+});
 
 const Registro = () => {
   const [nome, setNome] = useState("");
@@ -67,7 +77,7 @@ const Registro = () => {
   };
 
   return (
-    <>
+    <ThemeProvider theme={MyTheme}>
       <Header back />
       <Container>
         <Imagem src={logo} />
@@ -112,7 +122,7 @@ const Registro = () => {
           <Botao onClick={enviarFormulario}>Criar</Botao>
         </ContainerInput>
       </Container>{" "}
-    </>
+    </ThemeProvider>
   );
 };
 
