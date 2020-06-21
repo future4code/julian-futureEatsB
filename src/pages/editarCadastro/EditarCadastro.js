@@ -46,7 +46,6 @@ const EditarCadastro = () => {
   return (
     <div className={"telatoda"}>
       <Header title={"Editar"} back />
-      <button onClick={teste}>teste</button>
       <form onSubmit={onClickBotao}>
         <Text
           label={"Nome"}

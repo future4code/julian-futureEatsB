@@ -12,6 +12,7 @@ import Header from "../../Components/Header/index";
 import logo from "../../img/logo-invertido.png";
 import Password from "../../Components/InputPassword";
 import { useHistory } from "react-router";
+import { registro } from "../../functions/integracao";
 
 const Registro = () => {
   const [nome, setNome] = useState("");
@@ -50,20 +51,7 @@ const Registro = () => {
       password: senha,
     };
 
-    axios
-      .post(
-        "https://us-central1-missao-newton.cloudfunctions.net/futureEatsB/signup",
-        body
-      )
-      .then((response) => {
-        console.log(response.data.token);
-        localStorage.setItem("token", response.data.token);
-        history.push("/cadastro-endereco");
-      })
-      .catch((error) => {
-        console.log(error.response);
-        alert("erro dados invalidos");
-      });
+    registro(body, history);
   };
 
   return (
@@ -76,21 +64,21 @@ const Registro = () => {
         <ContainerInput>
           <Input
             onChange={inputNome}
-            label="nome e sobrenome"
+            label="Nome e sobrenome"
             variant="outlined"
             value={nome}
             name="name"
           />
           <Input
             onChange={inputEmail}
-            label="email"
+            label="Email"
             variant="outlined"
             value={email}
             name="email"
           />
           <Input
             onChange={inputCpf}
-            label="cpf"
+            label="CPF"
             variant="outlined"
             value={cpf}
             name="cpf"

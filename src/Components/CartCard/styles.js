@@ -16,13 +16,12 @@ export const CartCardContainer = styled.div`
 
 export const ContainerImg = styled.div`
   height: 100%;
-  width: 30vw;
-  overflow: hidden;
+  width: 30%;
 `;
 export const CardImg = styled.img`
-  object-fit: cover;
+  object-fit: fill;
   height: 100%;
-  margin-left: -60%;
+  width: 100%;
 `;
 
 export const ProductName = styled.p`
@@ -40,7 +39,7 @@ export const ProductName = styled.p`
 export const TextContainer = styled.div`
   display: flex;
   flex-flow: column wrap;
-  width: 100%;
+  width: 70%;
   justify-content: space-between;
   margin-left: 5%;
 `;
@@ -57,7 +56,7 @@ export const ProductDetails = styled.p`
 `;
 
 export const ActionButton = styled.button`
-  border: ${props => props.borda};
+  border: ${(props) => props.borda};
   background-color: white;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -71,21 +70,21 @@ export const ActionButton = styled.button`
   line-height: normal;
   letter-spacing: -0.29px;
   text-align: center;
-  color: ${props => props.cor};
+  color: ${(props) => props.cor};
 `;
 
-export const ContainerQuant = styled.div `
+export const ContainerQuant = styled.div`
   width: 9.167vw;
   height: 9.167vw;
   border-radius: 0 8px 0 8px;
   border: solid 2px #5cb646;
-  display: ${props => props.display};
+  display: ${(props) => props.display};
   justify-content: center;
   align-items: center;
-  z-index: 2; 
+  z-index: 2;
 `;
 
-export const ProductQuant = styled.p `
+export const ProductQuant = styled.p`
   font-family: Roboto;
   font-size: 16px;
   font-weight: normal;
@@ -115,7 +114,7 @@ export const BottomContainer = styled.div`
   margin-top: 7px;
 `;
 
-export const CabecalhoCard = styled.div `
+export const CabecalhoCard = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 8px;

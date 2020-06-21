@@ -91,3 +91,32 @@ export const upDateAddress = (form) => {
 
   window.alert("Cadastro atualizado com sucesso");
 };
+
+export const login = (body, history) => {
+  axios
+    .post(
+      "https://us-central1-missao-newton.cloudfunctions.net/futureEatsB/login",
+      body
+    )
+    .then((response) => {
+      localStorage.setItem("token", response.data.token);
+      history.replace("/home");
+    });
+};
+
+export const registro = (body, history) => {
+  axios
+    .post(
+      "https://us-central1-missao-newton.cloudfunctions.net/futureEatsB/signup",
+      body
+    )
+    .then((response) => {
+      console.log(response.data.token);
+      localStorage.setItem("token", response.data.token);
+      history.push("/cadastro-endereco");
+    })
+    .catch((error) => {
+      console.log(error.response);
+      alert("erro dados invalidos");
+    });
+};

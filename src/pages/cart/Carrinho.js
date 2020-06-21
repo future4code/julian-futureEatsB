@@ -25,9 +25,9 @@ const Carrinho = (props) => {
     autorização(history);
   }, []);
 
-   useEffect(() => {
+  useEffect(() => {
     defineValores();
-   }, [cartContexto.cart]);
+  }, [cartContexto.cart]);
 
   useEffect(() => {
     if (formaPagamento !== "" && cartContexto.cart.products.length !== 0) {
@@ -45,44 +45,44 @@ const Carrinho = (props) => {
     console.log("Funcionou Botão");
   };
 
-  const defineValores = () =>{
-    if (cartContexto.cart.products.length !== 0){
-      setValorFrete(cartContexto.cart.shipping)
-      
-      const valores = cartContexto.cart.products.map((produto) => {
-        return produto.price
-      })
+  const defineValores = () => {
+    if (cartContexto.cart.products.length !== 0) {
+      setValorFrete(cartContexto.cart.shipping);
 
-      let total = 0.00;
+      const valores = cartContexto.cart.products.map((produto) => {
+        return produto.price;
+      });
+
+      let total = 0.0;
       for (let i = 0; i < valores.length; i++) {
         total += valores[i];
-        setTotalProdutos(total)
+        setTotalProdutos(total);
       }
-    } 
-  }
+    }
+  };
 
-  let totalCarrinho = valorFrete + totalProdutos
+  let totalCarrinho = valorFrete + totalProdutos;
 
   let secaoMostrada;
   if (cartContexto.cart.products.length === 0) {
     secaoMostrada = <p id="carrinho-vazio">Carrinho Vazio</p>;
   } else {
-    const produtosNatela = cartContexto.cart.products.map(
-      (produto) => {
-        return (
-          <CartCard
-            quantidade={1}       /*Colocar função que pega quantidade carrinho*/
-            foto={produto.photoUrl}
-            nome={produto.name}
-            descricao={produto.description}
-            preco={produto.price.toFixed(2).replace(".", ",")}
-            tituloBotao={'remover'}
-            onClick={()=>{console.log('remover')}}
-            borda={'solid 2px #e02020'}
-          />
-        );
-      }
-    );
+    const produtosNatela = cartContexto.cart.products.map((produto) => {
+      return (
+        <CartCard
+          quantidade={1} /*Colocar função que pega quantidade carrinho*/
+          foto={produto.photoUrl}
+          nome={produto.name}
+          descricao={produto.description}
+          preco={produto.price.toFixed(2).replace(".", ",")}
+          tituloBotao={"remover"}
+          onClick={() => {
+            console.log("remover");
+          }}
+          borda={"solid 2px #e02020"}
+        />
+      );
+    });
 
     secaoMostrada = (
       <section>
