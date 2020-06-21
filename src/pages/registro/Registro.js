@@ -103,7 +103,7 @@ const Registro = () => {
             />
             <Password 
             onChange={inputConfirma} 
-            label="confirmar" 
+            label="Confirmar" 
             placeholder="Confirme a senha anterior"
             variant="outlined" 
             value={confirmar}

@@ -80,6 +80,7 @@ const Login = () => {
           />
           <Senha 
           onChange={inputSenha} 
+          label="Senha"
           value={senha}
           placeholder="Minimo 6 caracteres" 
           />

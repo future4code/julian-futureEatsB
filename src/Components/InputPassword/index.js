@@ -36,7 +36,7 @@ export default function Password(props) {
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
       >
-        <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-password">{props.label}</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"
           type={values.showPassword ? "text" : "password"}
