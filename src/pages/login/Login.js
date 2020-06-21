@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { useHistory } from "react-router";
-import axios from "axios";
+
 import {
   Container,
   Imagem,
@@ -75,15 +75,20 @@ const Login = () => {
             type="text"
             value={email}
             required
-            label="email"
+            label="E-mail"
             variant="outlined"
           />
-          <Senha onChange={inputSenha} value={senha} />
-        </ContainerInput>
-  
+          <Senha 
+          onChange={inputSenha} 
+          value={senha}
+          placeholder="Minimo 6 caracteres" 
+          />
+
         <Button active={botaoAtivo} title={'Entrar'} onClick={enviarInputs} type="submit">
           Entrar
         </Button>
+        </ContainerInput>
+  
         <Paragrafo2>
           Nao possui cadastro?<Linki to="/registro">&nbsp; Clique aqui</Linki>
         </Paragrafo2>

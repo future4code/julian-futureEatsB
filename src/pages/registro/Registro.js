@@ -1,123 +1,123 @@
-import React, { useState } from "react";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import axios from "axios";
-import {
-  Container,
-  Imagem,
-  Paragrafo,
-  ContainerInput,
-  Input,
-  Botao,
-} from "./styles";
-import Header from "../../Components/Header/index";
-import logo from "../../img/logo-invertido.png";
-import Password from "../../Components/InputPassword";
+import React, {useState} from 'react'
+import axios from 'axios'
+import {Container, Imagem, Paragrafo, ContainerInput, Input, Botao } from './styles'
+import Header from '../../Components/Header/index'
+import logo from '../../img/logo-invertido.png'
+import Password from '../../Components/InputPassword'
 import { useHistory } from "react-router";
-import Loading from './../../Components/Loading/Loading';
-import { registro } from "../../functions/integracao";
 
-const MyTheme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#b8b8b8",
-      contrastText: "#b8b8b8",
-    },
-  },
-});
 
 const Registro = () => {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [senha, setSenha] = useState("");
-  const [confirmar, setConfirmar] = useState("");
-  const [open, setOpen] = useState(false)
+    const [nome, setNome] = useState("")
+    const [email, setEmail] = useState("")
+    const [cpf, setCpf] = useState("")
+    const [senha, setSenha ] = useState("")
+    const [confirmar, setConfirmar] = useState("")
 
-  const history = useHistory();
+    
+    const history = useHistory()
 
-  const inputNome = (event) => {
-    setNome(event.target.value);
-  };
+    const inputNome = (event) => {
+        setNome(event.target.value)
+    }
 
-  const inputEmail = (event) => {
-    setEmail(event.target.value);
-  };
+    const inputEmail = (event) => {
+        setEmail(event.target.value)
+    }
 
-  const inputCpf = (event) => {
-    setCpf(event.target.value);
-  };
+    const inputCpf = (event) => {
+        setCpf(event.target.value)
+    }
 
-  const inputSenha = (event) => {
-    setSenha(event.target.value);
-  };
+    const inputSenha = (event) => {
+        setSenha(event.target.value)
+    }
 
-  const inputConfirma = (event) => {
-    setConfirmar(event.target.value);
-  };
+    const inputConfirma = (event) => {
+        setConfirmar(event.target.value)
+    }
 
-  const enviarFormulario = () => {
-    setOpen(true)
+    const enviarFormulario = () => {
+
+    if (senha !== confirmar) {
+    alert("as senhas sao diferentes")
+    }
+        
     const body = {
-      name: nome,
-      email: email,
-      cpf: cpf,
-      password: senha,
-    };
+    name: nome,
+	email: email,
+	cpf: cpf,
+	password: senha} 
+   
+    axios.post('https://us-central1-missao-newton.cloudfunctions.net/futureEatsB/signup', body
+    ).then((response) => {
+    console.log(response.data.token)
+    localStorage.setItem("token", response.data.token)
+    history.push("/cadastro-endereco")
+    }).catch(error => {
+    console.log(error.response)
+    alert("erro dados invalidos")
+    })
 
-    registro(body, history);
+    }
 
-  };
 
-  return (
-    <ThemeProvider theme={MyTheme}>
-      <Header back />
-      <Container>
-        <Imagem src={logo} />
-        <Paragrafo>Cadastrar</Paragrafo>
-
-        <ContainerInput>
-          <Input
-            onChange={inputNome}
-            label="Nome e sobrenome"
-            variant="outlined"
+    return (
+        <>
+        <Header back/> 
+        <Container>   
+          <Imagem src={logo}/>
+            <Paragrafo>Cadastrar</Paragrafo>
+            
+            <ContainerInput>
+            <Input 
+            onChange={inputNome} 
+            label="Nome" 
+            placeholder="Nome e sobrenome"
+            variant="outlined" 
             value={nome}
-            name="name"
-          />
-          <Input
-            onChange={inputEmail}
-            label="Email"
-            variant="outlined"
+            name='name'
+            />
+            <Input 
+            onChange={inputEmail} 
+            label="E-mail" 
+            placeholder="email@email.com"
+            variant="outlined" 
             value={email}
-            name="email"
-          />
-          <Input
-            onChange={inputCpf}
-            label="CPF"
-            variant="outlined"
+            name='email'
+            />
+            <Input 
+            onChange={inputCpf} 
+            label="CPF" 
+            placeholder="000.000.000-00"
+            variant="outlined" 
             value={cpf}
-            name="cpf"
-          />
-          <Password
-            onChange={inputSenha}
-            label="senha"
+            name='cpf'
+            />
+            <Password 
+            onChange={inputSenha} 
+            label="Senha"
+            placeholder="Senha"   
             value={senha}
-            name="password"
-          />
-          <Password
-            onChange={inputConfirma}
-            label="confirmar"
-            variant="outlined"
+            name='password'
+            />
+            <Password 
+            onChange={inputConfirma} 
+            label="confirmar" 
+            placeholder="Confirme a senha anterior"
+            variant="outlined" 
             value={confirmar}
-            name="confirmar"
-          />
+            name='confirmar'
+            />
 
-          <Botao onClick={enviarFormulario}>Criar</Botao>
+            <Botao onClick={enviarFormulario}>Criar</Botao>
 
-          <Loading openLoading={open} />
-        </ContainerInput>
-      </Container>{" "}
-    </ThemeProvider>
-  );
-};
+            </ContainerInput>
+        
+        </Container> </>
+    )
 
-export default Registro;
+
+} 
+
+export default Registro

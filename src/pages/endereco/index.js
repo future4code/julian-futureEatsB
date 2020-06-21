@@ -91,12 +91,49 @@ const Endereco = () =>{
                 <Paragrafo>Meu endereço</Paragrafo>
     
                 <ContainerInput>
-                <Input onChange={inputLogradouro} label="logradouro" placeholder="Rua / Av." variant="outlined" required/>
-                <Input onChange={inputNumero} label="numero" placeholder="numero" variant="outlined" required type="number"/>
-                <Input onChange={inputComplemento} label="complemento" placeholder="Apto. Bloco" variant="outlined" required/>
-                <Input onChange={inputBairro} label="bairro" placeholder="Bairro" variant="outlined" required/>
-                <Input onChange={inputCidade} label="cidade" placeholder="Cidade" variant="outlined" required/>
-                <Input onChange={inputEstado} label="estado" placeholder="Estado" variant="outlined" required/>
+                <Input 
+                onChange={inputLogradouro} 
+                label="Logradouro" 
+                placeholder="Rua / Av." 
+                variant="outlined" 
+                required
+                />
+                <Input 
+                onChange={inputNumero} 
+                label="Numero" 
+                placeholder="Numero" 
+                variant="outlined" 
+                required 
+                type="number"
+                />
+                <Input 
+                onChange={inputComplemento} 
+                label="Complemento" 
+                placeholder="Apto. / Bloco" 
+                variant="outlined" 
+                required
+                />
+                <Input 
+                onChange={inputBairro} 
+                label="Bairro" 
+                placeholder="Bairro" 
+                variant="outlined" 
+                required
+                />
+                <Input 
+                onChange={inputCidade} 
+                label="Cidade" 
+                placeholder="Cidade" 
+                variant="outlined" 
+                required
+                />
+                <Input 
+                onChange={inputEstado} 
+                label="Estado" 
+                placeholder="Estado" 
+                variant="outlined" 
+                required
+                />
     
                 <Botao onClick={enviarInput}>Salvar</Botao>
     
