@@ -25,6 +25,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Slide from '@material-ui/core/Slide';
+import Loading from '../../Components/Loading/Loading';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -46,11 +47,18 @@ function Restaurante(props) {
   const [open, setOpen] = useState(false);
   const [quantidade, setQuantidade] = useState(0);
   const [idProduto, setIdProduto] = useState('');
-  const [produtos, setProdutos] = useState([])
+  const [produtos, setProdutos] = useState([]);
+  const [openLoading, setOpenLoading] = useState(true)
 
   useEffect(() => {
     autorização(history);
   }, []);
+
+  useEffect(() => {
+    restContexto.produtos.length !== 0 ?
+      setOpenLoading(false) :
+      setOpenLoading(true)
+  }, [restContexto.produtos]);
 
   useEffect(() => {
     pegaProdutos(pathParams.pageID, restContexto.dispatch)
@@ -174,6 +182,7 @@ function Restaurante(props) {
         </Dialog>
 
       </RestauranteContainer>
+      <Loading openLoading={openLoading} />
     </ThemeProvider>
   );
 }

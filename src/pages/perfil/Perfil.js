@@ -21,6 +21,8 @@ import Footer from "../../Components/Footer";
 import Header from "../../Components/Header";
 import { autorização } from "../../functions";
 import { getProfile, pegaEndereço } from "../../functions/integracao";
+import CardContext from "../../functions/CardContext";
+import Loading from './../../Components/Loading/Loading';
 
 const MyTheme = createMuiTheme({
   palette: {
@@ -33,12 +35,14 @@ const MyTheme = createMuiTheme({
 
 export function Perfil(props) {
   const history = useHistory();
+  const loadContexto = useContext(CardContext);
   const [profile, setProfile] = useState({});
   const [address, setAddress] = useState({});
+  const [open, setOpen] = useState(true)
 
   useEffect(() => {
     autorização(history);
-    getProfile().then((response) => setProfile(response));
+    getProfile().then((response) => {setProfile(response); setOpen(false)});
     pegaEndereço().then((res) => setAddress(res));
   }, []);
 
@@ -77,6 +81,8 @@ export function Perfil(props) {
           <CardHistorico />
         </HistoricoContainer>
         <Footer page={"perfil"} />
+
+        <Loading openLoading={open} />
       </ProfileContainer>
     </ThemeProvider>
   );

@@ -13,6 +13,7 @@ import Header from "../../Components/Header/index";
 import logo from "../../img/logo-invertido.png";
 import Password from "../../Components/InputPassword";
 import { useHistory } from "react-router";
+import Loading from './../../Components/Loading/Loading';
 
 const MyTheme = createMuiTheme({
   palette: {
@@ -29,6 +30,7 @@ const Registro = () => {
   const [cpf, setCpf] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmar, setConfirmar] = useState("");
+  const [open, setOpen] = useState(false)
 
   const history = useHistory();
 
@@ -53,6 +55,7 @@ const Registro = () => {
   };
 
   const enviarFormulario = () => {
+    setOpen(true)
     const body = {
       name: nome,
       email: email,
@@ -68,10 +71,12 @@ const Registro = () => {
       .then((response) => {
         console.log(response.data.token);
         localStorage.setItem("token", response.data.token);
+        setOpen(false);
         history.push("/cadastro-endereco");
       })
       .catch((error) => {
         console.log(error.response);
+        setOpen(false);
         alert("erro dados invalidos");
       });
   };
@@ -120,6 +125,8 @@ const Registro = () => {
           />
 
           <Botao onClick={enviarFormulario}>Criar</Botao>
+
+          <Loading openLoading={open} />
         </ContainerInput>
       </Container>{" "}
     </ThemeProvider>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import {Container, Input, Paragrafo, ContainerInput, Botao} from './styles';
 import Header from '../../Components/Header/index';
 import { useHistory } from "react-router";
+import Loading from './../../Components/Loading/Loading';
 
 const MyTheme = createMuiTheme({
     palette: {
@@ -22,6 +23,7 @@ const Endereco = () =>{
     const [bairro, setBairro] = useState("")
     const [cidade, setCidade] = useState("")
     const [estado, setEstado] = useState("")
+    const [open, setOpen] = useState(false)
     
     const inputLogradouro = (event) => {
         setLogradouro(event.target.value)
@@ -53,9 +55,8 @@ const Endereco = () =>{
         history.push('/home')
       }
 
-
     const enviarInput = () => {
-           
+        setOpen(true) 
         const token = localStorage.getItem("token")
 
         const body = {
@@ -73,9 +74,11 @@ const Endereco = () =>{
         }}).then((response) => {
             console.log(response)
             localStorage.setItem("token", response.data.token)
+            setOpen(false)
             goToHome()
         }).catch(error => {
             console.log(error.response)
+            setOpen(false)
             alert('erro insira um endereço valido')
         })
 
@@ -98,6 +101,8 @@ const Endereco = () =>{
                 <Botao onClick={enviarInput}>Salvar</Botao>
     
                 </ContainerInput>
+            
+                <Loading openLoading={open} />
             </Container>
 
         </ThemeProvider>

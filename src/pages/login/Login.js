@@ -15,6 +15,7 @@ import {
 import Button from "../../Components/Button";
 import logo from "../../img/logo-invertido.png";
 import { Linki } from "./styles";
+import Loading from './../../Components/Loading/Loading';
 
 const MyTheme = createMuiTheme({
   palette: {
@@ -28,7 +29,8 @@ const MyTheme = createMuiTheme({
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [botaoAtivo, setBotaoAtivo] = useState(false)
+  const [botaoAtivo, setBotaoAtivo] = useState(false);
+  const [open, setOpen] = useState(false)
   const history = useHistory();
   
   useEffect(() => {    
@@ -52,6 +54,7 @@ const Login = () => {
   };
 
   const enviarInputs = () => {
+    setOpen(true)
     const body = {
       email: email,
       password: senha,
@@ -65,10 +68,12 @@ const Login = () => {
       .then((response) => {
         console.log(response.data.token);
         localStorage.setItem("token", response.data.token);
+        setOpen(false);
         goToHome()
       })
       .catch((error) => {
         console.log(error.response);
+        setOpen(false);
       });
   };
 
@@ -98,6 +103,8 @@ const Login = () => {
         <Paragrafo2>
           Nao possui cadastro?<Linki to="/registro">&nbsp; Clique aqui</Linki>
         </Paragrafo2>
+
+        <Loading openLoading={open} />
       </Container>
     </ThemeProvider>
   );

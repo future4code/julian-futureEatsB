@@ -14,6 +14,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import clsx from 'clsx';
+import Loading from '../../Components/Loading/Loading'
 
 const Abas = withStyles({
   root: {
@@ -66,10 +67,17 @@ const Home = (props) => {
   const classes = useStyles();
   const [tipoSelecionado, setTipoSelecionado] = useState("todos");
   const homeContexto = useContext(CardContext);
+  const [open, setOpen] = useState(true)
 
   useEffect(() => {
     autorização(history);
   }, []);
+
+  useEffect(() => {
+    homeContexto.restaurantes.length !== 0 ? 
+    setOpen(false):
+    setOpen(true)
+  }, [homeContexto.restaurantes]);
 
   const goToBuscar = () => {
     history.push("/busca");
@@ -165,6 +173,8 @@ const Home = (props) => {
         </section>
 
         <Footer page={"home"} />
+
+        <Loading openLoading={open}/>
       </div>
     </ThemeProvider>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "../../Components/Button";
 import Header from "../../Components/Header";
@@ -7,6 +7,8 @@ import { useForm, autorização } from "../../functions";
 import "./EditarCadastro.css";
 import { upDateProfile, getProfile } from "../../functions/integracao";
 import { useHistory } from "react-router-dom";
+import Loading from './../../Components/Loading/Loading';
+import CardContext from "../../functions/CardContext";
 
 const MyTheme = createMuiTheme({
   palette: {
@@ -19,6 +21,7 @@ const MyTheme = createMuiTheme({
 
 const EditarCadastro = () => {
   const history = useHistory();
+  const loadContexto = useContext(CardContext);
   const { form, onChange, resetForm } = useForm({
     cpf: "",
     email: "",
@@ -46,7 +49,7 @@ const EditarCadastro = () => {
       email: form.email,
       name: form.name,
     };
-    upDateProfile(body);
+    upDateProfile(body, loadContexto.dispatch);
   };
 
   const teste = () => {
@@ -90,6 +93,8 @@ const EditarCadastro = () => {
             active={true}
           />
         </form>
+
+        <Loading openLoading={loadContexto.loadIsOpen} />
       </div>
     </ThemeProvider>
   );

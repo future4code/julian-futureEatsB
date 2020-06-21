@@ -37,6 +37,7 @@ const App = () => {
       cart: state.cart[0].restaurant, 
       produtos: state.products, 
       mostraAlert: state.mostraAlertAndamento,
+      loadIsOpen: state.abreLoading,
       dispatch: dispatch 
     }}>
       <BrowserRouter>
