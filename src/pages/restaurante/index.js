@@ -49,7 +49,7 @@ function Restaurante(props) {
   const [idProduto, setIdProduto] = useState('');
   const [produtos, setProdutos] = useState([]);
   const [openLoading, setOpenLoading] = useState(true)
-
+  const [quantidade, setQuantidade] = useState(0)
 
   useEffect(() => {
     autorização(history);
@@ -64,7 +64,6 @@ function Restaurante(props) {
   useEffect(() => {
     pegaProdutos(pathParams.pageID, restContexto.dispatch)
   }, [])
-
 
   useEffect(() => {
     if (restContexto.produtos.products !== undefined) {

@@ -14,7 +14,8 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import clsx from 'clsx';
-import Loading from '../../Components/Loading/Loading'
+import Loading from '../../Components/Loading/Loading';
+import Alerta from './../../Components/Alert/Alert';
 
 const Abas = withStyles({
   root: {
@@ -67,7 +68,7 @@ const Home = (props) => {
   const classes = useStyles();
   const [tipoSelecionado, setTipoSelecionado] = useState("todos");
   const homeContexto = useContext(CardContext);
-  const [open, setOpen] = useState(true)
+  const [openLoad, setOpenLoad] = useState(true);
 
   useEffect(() => {
     autorização(history);
@@ -75,8 +76,8 @@ const Home = (props) => {
 
   useEffect(() => {
     homeContexto.restaurantes.length !== 0 ? 
-    setOpen(false):
-    setOpen(true)
+    setOpenLoad(false):
+    setOpenLoad(true)
   }, [homeContexto.restaurantes]);
 
   const goToBuscar = () => {
@@ -174,7 +175,8 @@ const Home = (props) => {
 
         <Footer page={"home"} />
 
-        <Loading openLoading={open}/>
+        {homeContexto.pedido !== undefined ? <Alerta /> : ""}
+        <Loading openLoading={openLoad}/>
       </div>
     </ThemeProvider>
   );

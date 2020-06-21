@@ -54,11 +54,11 @@ const Login = () => {
 
   const enviarInputs = () => {
     setOpen(true)
-    const body = {
-      email: email,
-      password: senha,
-    };
-    await login(body, history);
+  //  const body = {
+  //    email: email,
+  //    password: senha,
+  //  };
+  //  await login(body, history);
   };
 
   return (
