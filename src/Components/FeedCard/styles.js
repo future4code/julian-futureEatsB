@@ -13,15 +13,18 @@ export const FeedCardContainer = styled.div`
 `;
 
 export const ProductImg = styled.img`
-  object-fit: cover;
-  width: 100%;
+  object-fit: fill;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 `;
 
 export const ContainerImg = styled.div`
   width: 100%;
   overflow: hidden;
-  height: 120px;
-`
+  height: 15vh;
+`;
 export const StoreName = styled(Typography)`
   height: 18px;
   font-family: Roboto;
@@ -48,7 +51,7 @@ export const OrderDetailsDem = styled.span`
   grid-area: 2/1/3/2;
 `;
 
-export const OrderDetailsFre = styled.span `
+export const OrderDetailsFre = styled.span`
   color: #b8b8b8;
   grid-area: 2/2/3/3;
   text-align: end;

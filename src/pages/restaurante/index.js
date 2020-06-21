@@ -10,9 +10,9 @@ import {
   DetailsMidContainer,
   SectionText,
   ContainerImg,
-  TituloDialog, 
-  SelecionaQtdade, 
-  Botao
+  TituloDialog,
+  SelecionaQtdade,
+  Botao,
 } from "./styles";
 import CartCard from "../../Components/CartCard";
 import { useParams, useHistory } from "react-router-dom";
@@ -26,6 +26,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Slide from '@material-ui/core/Slide';
 import Loading from '../../Components/Loading/Loading';
+import Header from "../../Components/Header";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -45,10 +46,10 @@ function Restaurante(props) {
   const history = useHistory();
   const restContexto = useContext(CardContext);
   const [open, setOpen] = useState(false);
-  const [quantidade, setQuantidade] = useState(0);
   const [idProduto, setIdProduto] = useState('');
   const [produtos, setProdutos] = useState([]);
   const [openLoading, setOpenLoading] = useState(true)
+
 
   useEffect(() => {
     autorização(history);
@@ -64,56 +65,67 @@ function Restaurante(props) {
     pegaProdutos(pathParams.pageID, restContexto.dispatch)
   }, [])
 
+
   useEffect(() => {
     if (restContexto.produtos.products !== undefined) {
       const Novosprodutos = restContexto.produtos.products.map((produto) => {
-        return Object.defineProperty(produto, 'quantidade', {
+        return Object.defineProperty(produto, "quantidade", {
           enumerable: true,
           configurable: true,
           writable: true,
-          value: 0
+          value: 0,
         });
-      })    
-      setProdutos(Novosprodutos)}
-  }, [restContexto.produtos.products])
-  
-  const adicionarCarrinho = () => {
-    setOpen(false) 
-    produtos.forEach((produto, i, arr) =>{
-      if(produto.id ===idProduto){
-        return produto.quantidade = quantidade
-      }
-    })
-    console.log('adicionado', produtos)
-  }
+      });
+      setProdutos(Novosprodutos);
+    }
+  }, [restContexto.produtos.products]);
 
-  const abreDialog = (idProduct) =>{
-    setOpen(true)
-    setIdProduto(idProduct)
-  }
+  const adicionarCarrinho = () => {
+    setOpen(false);
+    produtos.forEach((produto, i, arr) => {
+      if (produto.id === idProduto) {
+        return (produto.quantidade = quantidade);
+      }
+    });
+    console.log("adicionado", produtos);
+  };
+
+  const abreDialog = (idProduct) => {
+    setOpen(true);
+    setIdProduto(idProduct);
+  };
 
   const removerCarrinho = (idProduct) => {
     produtos.forEach((produto, i, arr) => {
       if (produto.id === idProduto) {
-        return produto.quantidade = 0
+        return (produto.quantidade = 0);
       }
-    })
-    console.log('removido', produtos)
-  }
+    });
+    console.log("removido", produtos);
+  };
 
   return (
     <ThemeProvider theme={MyTheme}>
       <RestauranteContainer>
         <UpperRestaurantContainer>
-          <ContainerImg><ResturanteImg src={restContexto.produtos.logoUrl} alt='Logo Restaurante'/></ContainerImg>
+          <ContainerImg>
+            <ResturanteImg
+              src={restContexto.produtos.logoUrl}
+              alt="Logo Restaurante"
+            />
+          </ContainerImg>
           <RestaurantTitle>{restContexto.produtos.name}</RestaurantTitle>
         </UpperRestaurantContainer>
         <RestaurantDetails>{restContexto.produtos.category}</RestaurantDetails>
         <DetailsMidContainer>
-          <RestaurantDetails>{restContexto.produtos.deliveryTime}mins</RestaurantDetails>
+          <RestaurantDetails>
+            {restContexto.produtos.deliveryTime}mins
+          </RestaurantDetails>
           <RestaurantDetailsFrete>
             Frete R$
-            {restContexto.produtos.shipping === undefined ? "..." : restContexto.produtos.shipping.toFixed(2)}
+            {restContexto.produtos.shipping === undefined
+              ? "..."
+              : restContexto.produtos.shipping.toFixed(2)}
           </RestaurantDetailsFrete>
         </DetailsMidContainer>
         <RestaurantDetails>{restContexto.produtos.address}</RestaurantDetails>
@@ -122,18 +134,32 @@ function Restaurante(props) {
           <p>...</p>
         ) : (
           produtos
-  //          .filter((product) => product.category !== "Bebida")
+            .filter((product) => product.category !== "Bebida")
             .map((produto) => {
-              return <CartCard
-                quantidade={produto.quantidade === 0? '' : produto.quantidade}
-                foto={produto.photoUrl}
-                nome={produto.name}
-                descricao={produto.description}
-                preco={produto.price.toFixed(2).replace(".", ",")}
-                tituloBotao={produto.quantidade === 0? 'adicionar' : 'remover'}
-                onClick={() => { produto.quantidade === 0 ? abreDialog(produto.id) : removerCarrinho(produto.id) }}
-                borda={produto.quantidade === 0 ? 'solid 2px #5cb646' : 'solid 2px #e02020'}
-                />;
+              return (
+                <CartCard
+                  quantidade={
+                    produto.quantidade === 0 ? "" : produto.quantidade
+                  }
+                  foto={produto.photoUrl}
+                  nome={produto.name}
+                  descricao={produto.description}
+                  preco={produto.price.toFixed(2).replace(".", ",")}
+                  tituloBotao={
+                    produto.quantidade === 0 ? "adicionar" : "remover"
+                  }
+                  onClick={() => {
+                    produto.quantidade === 0
+                      ? abreDialog(produto.id)
+                      : removerCarrinho(produto.id);
+                  }}
+                  borda={
+                    produto.quantidade === 0
+                      ? "solid 2px #5cb646"
+                      : "solid 2px #e02020"
+                  }
+                />
+              );
             })
         )}
         <SectionText>Acompanhamentos</SectionText>
@@ -146,12 +172,14 @@ function Restaurante(props) {
               return <CartCard main={acompanhamentos} />;
             })
         )}
-  
+
         <Dialog
           open={open}
           TransitionComponent={Transition}
           keepMounted
-          onClose={() => { setOpen(false) }}
+          onClose={() => {
+            setOpen(false);
+          }}
         >
           <TituloDialog>Selecione a quantidade desejada</TituloDialog>
           <DialogContent>
@@ -159,7 +187,9 @@ function Restaurante(props) {
               <SelecionaQtdade
                 initialValue={0}
                 value={quantidade}
-                onChange={(e)=>{setQuantidade(e.target.value)}}
+                onChange={(e) => {
+                  setQuantidade(e.target.value);
+                }}
               >
                 <MenuItem value={1}>1</MenuItem>
                 <MenuItem value={2}>2</MenuItem>
@@ -175,12 +205,9 @@ function Restaurante(props) {
             </FormControl>
           </DialogContent>
           <DialogActions>
-            <Botao onClick={adicionarCarrinho}>
-              ADICIONAR AO CARRINHO
-            </Botao>
+            <Botao onClick={adicionarCarrinho}>ADICIONAR AO CARRINHO</Botao>
           </DialogActions>
         </Dialog>
-
       </RestauranteContainer>
       <Loading openLoading={openLoading} />
     </ThemeProvider>

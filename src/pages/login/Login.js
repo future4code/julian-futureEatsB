@@ -15,6 +15,7 @@ import {
 import Button from "../../Components/Button";
 import logo from "../../img/logo-invertido.png";
 import { Linki } from "./styles";
+import { login } from "../../functions/integracao";
 import Loading from './../../Components/Loading/Loading';
 
 const MyTheme = createMuiTheme({
@@ -26,25 +27,23 @@ const MyTheme = createMuiTheme({
   },
 });
 
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [botaoAtivo, setBotaoAtivo] = useState(false);
   const [open, setOpen] = useState(false)
+
   const history = useHistory();
-  
-  useEffect(() => {    
-   if (email !== '' && senha !== 0) {
-     setBotaoAtivo(true)
-   } else{
-     setBotaoAtivo(false)
-   }
+
+  useEffect(() => {
+    if (email !== "" && senha !== "") {
+      setBotaoAtivo(true);
+    } else {
+      setBotaoAtivo(false);
+    }
   }, [email, senha]);
-  
-  const goToHome = () =>{
-    history.push('/home')
-  }
-  
+
   const inputEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -59,22 +58,7 @@ const Login = () => {
       email: email,
       password: senha,
     };
-
-    axios
-      .post(
-        "https://us-central1-missao-newton.cloudfunctions.net/futureEatsB/login",
-        body
-      )
-      .then((response) => {
-        console.log(response.data.token);
-        localStorage.setItem("token", response.data.token);
-        setOpen(false);
-        goToHome()
-      })
-      .catch((error) => {
-        console.log(error.response);
-        setOpen(false);
-      });
+    await login(body, history);
   };
 
   return (
@@ -103,10 +87,9 @@ const Login = () => {
         <Paragrafo2>
           Nao possui cadastro?<Linki to="/registro">&nbsp; Clique aqui</Linki>
         </Paragrafo2>
-
-        <Loading openLoading={open} />
-      </Container>
-    </ThemeProvider>
+      <Loading openLoading={open} />
+    </Container>
+  </ThemeProvider>
   );
 };
 

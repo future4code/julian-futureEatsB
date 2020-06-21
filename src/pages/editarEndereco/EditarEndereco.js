@@ -5,7 +5,6 @@ import Header from "../../Components/Header";
 import { Text } from "./styles";
 import { useForm, autorização } from "../../functions";
 import "./EditarEndereco.css";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { pegaEndereço, upDateAddress } from "../../functions/integracao";
 

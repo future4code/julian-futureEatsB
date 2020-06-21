@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import Select from "@material-ui/core/Select";
+import Button from "@material-ui/core/Button";
 
 export const TituloDialog = styled.p`
   font-family: Roboto;
@@ -13,18 +13,17 @@ export const TituloDialog = styled.p`
   text-align: center;
   color: #000000;
   margin: 6.719vh 9vw 4.844vh 9vw;
-`
+`;
 
 export const Botao = styled(Button)`
   span {
     color: #5cb646;
   }
-`
+`;
 
 export const SelecionaQtdade = styled(Select)`
   width: 68vw;
-`
-
+`;
 
 export const RestauranteContainer = styled.div`
   overflow-x: hidden;
@@ -37,14 +36,12 @@ export const UpperRestaurantContainer = styled.div`
 `;
 
 export const ContainerImg = styled.div`
-  width: 100%;
   height: 18.75vh;
-  border-radius: 8px 8px 0 0 ;
+  border-radius: 8px 8px 0 0;
   overflow: hidden;
-`
+`;
 export const ResturanteImg = styled.img`
-  width: 100%;
-  object-fit: fill;
+  object-fit: contain;
 `;
 
 export const RestaurantTitle = styled.p`
@@ -89,5 +86,5 @@ export const DetailsMidContainer = styled.div`
 export const SectionText = styled.p`
   border-bottom: 1px solid black;
   margin-top: 2.5vh;
-  padding-bottom: 1.25vh
+  padding-bottom: 1.25vh;
 `;
