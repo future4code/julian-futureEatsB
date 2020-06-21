@@ -30,9 +30,10 @@ const App = () => {
     pegaEndereço(dispatch)
   }, [])
 
-   return (
+  return (
     <CardContext.Provider value={{
       endereco: state.enderecoUser,
+      pedido: state.andamentoPedido[0],
       restaurantes: state.restaurants, 
       cart: state.cart[0].restaurant, 
       produtos: state.products, 

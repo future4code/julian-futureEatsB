@@ -1,5 +1,15 @@
 export const initialState = {
   mostraAlertAndamento: false, 
+  andamentoPedido: [
+    {
+      "order": {
+        "totalPrice": 57.7,
+        "restaurantName": "McDonalds",
+        "createdAt": 1592729429059,
+        "expiresAt": 1592730329059
+      }
+    }
+  ],
   enderecoUser: [
     {
         "city": "São Paulo",
@@ -96,6 +106,7 @@ export function CartReducer(state, action) {
         });
       }
       return { products: state.products.push(newCart) };
+    
     case "REMOVE":
       return { products: state.products.filter() };
 
