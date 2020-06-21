@@ -5,6 +5,11 @@ let baseUrl =
 
 let token = window.localStorage.getItem("token");
 
+const buscaAndamentoPedido = (andamento) =>({
+  type: "VER_ANDAMENT0",
+  isWaiting: andamento,
+})
+
 const buscaRestaurantes = (restaurantes) => ({
   type: "PEGA_RESTAURANTES",
   restaurants: restaurantes,
@@ -37,6 +42,19 @@ export const pegaRestaurantes = async (dispatch) => {
     console.log(err);
   }
 };
+
+//export const pegaAndamentoPedido = async (dispatch) => {
+//  try {
+//    const response = await axios.get(`${baseUrl}/active-order`, {
+//      headers: {
+//        auth: token,
+//      },
+//    });
+//    dispatch(buscaAndamentoPedido(response.data.order));
+//  } catch (err) {
+//    console.log(err);
+//  }
+//};
 
 export const pegaProdutos = async (id, dispatch) => {
   try {
