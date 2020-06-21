@@ -16,7 +16,7 @@ import Button from "../../Components/Button";
 import logo from "../../img/logo-invertido.png";
 import { Linki } from "./styles";
 import { login } from "../../functions/integracao";
-import Loading from './../../Components/Loading/Loading';
+import Loading from "./../../Components/Loading/Loading";
 
 const MyTheme = createMuiTheme({
   palette: {
@@ -27,12 +27,11 @@ const MyTheme = createMuiTheme({
   },
 });
 
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [botaoAtivo, setBotaoAtivo] = useState(false);
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const history = useHistory();
 
@@ -53,21 +52,21 @@ const Login = () => {
   };
 
   const enviarInputs = () => {
-    setOpen(true)
-  //  const body = {
-  //    email: email,
-  //    password: senha,
-  //  };
-  //  await login(body, history);
+    setOpen(true);
+    const body = {
+      email: email,
+      password: senha,
+    };
+    login(body, history);
   };
 
   return (
     <ThemeProvider theme={MyTheme}>
       <Container>
         <Imagem src={logo} />
-  
+
         <Paragrafo>Entrar</Paragrafo>
-  
+
         <ContainerInput>
           <Input
             onChange={inputEmail}
@@ -78,24 +77,29 @@ const Login = () => {
             label="E-mail"
             variant="outlined"
           />
-          <Senha 
-          onChange={inputSenha} 
-          label="Senha"
-          value={senha}
-          placeholder="Minimo 6 caracteres" 
+          <Senha
+            onChange={inputSenha}
+            label="Senha"
+            value={senha}
+            placeholder="Minimo 6 caracteres"
           />
 
-        <Button active={botaoAtivo} title={'Entrar'} onClick={enviarInputs} type="submit">
-          Entrar
-        </Button>
+          <Button
+            active={botaoAtivo}
+            title={"Entrar"}
+            onClick={enviarInputs}
+            type="submit"
+          >
+            Entrar
+          </Button>
         </ContainerInput>
-  
+
         <Paragrafo2>
           Nao possui cadastro?<Linki to="/registro">&nbsp; Clique aqui</Linki>
         </Paragrafo2>
-      <Loading openLoading={open} />
-    </Container>
-  </ThemeProvider>
+        <Loading openLoading={open} />
+      </Container>
+    </ThemeProvider>
   );
 };
 
