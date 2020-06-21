@@ -1,9 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import {
-  createMuiTheme,
-  ThemeProvider,
-  withStyles,
-} from "@material-ui/core/styles";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import {
   RestauranteContainer,
   UpperRestaurantContainer,
@@ -22,13 +18,14 @@ import CartCard from "../../Components/CartCard";
 import { useParams, useHistory } from "react-router-dom";
 import { autorização } from "../../functions";
 import CardContext from "../../functions/CardContext";
-import { pegaProdutos } from "../../functions/integracao";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import Slide from "@material-ui/core/Slide";
+import { pegaProdutos } from '../../functions/integracao';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import Slide from '@material-ui/core/Slide';
+import Loading from '../../Components/Loading/Loading';
 import Header from "../../Components/Header";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -40,7 +37,6 @@ const MyTheme = createMuiTheme({
     primary: {
       main: "#b8b8b8",
       contrastText: "#b8b8b8",
-      light: "rgba(92, 182, 70, 0.5)",
     },
   },
 });
@@ -50,17 +46,24 @@ function Restaurante(props) {
   const history = useHistory();
   const restContexto = useContext(CardContext);
   const [open, setOpen] = useState(false);
-  const [quantidade, setQuantidade] = useState(0);
-  const [idProduto, setIdProduto] = useState("");
+  const [idProduto, setIdProduto] = useState('');
   const [produtos, setProdutos] = useState([]);
+  const [openLoading, setOpenLoading] = useState(true)
+  const [quantidade, setQuantidade] = useState(0)
 
   useEffect(() => {
     autorização(history);
   }, []);
 
   useEffect(() => {
-    pegaProdutos(pathParams.pageID, restContexto.dispatch);
-  }, []);
+    restContexto.produtos.length !== 0 ?
+      setOpenLoading(false) :
+      setOpenLoading(true)
+  }, [restContexto.produtos]);
+
+  useEffect(() => {
+    pegaProdutos(pathParams.pageID, restContexto.dispatch)
+  }, [])
 
   useEffect(() => {
     if (restContexto.produtos.products !== undefined) {
@@ -205,6 +208,7 @@ function Restaurante(props) {
           </DialogActions>
         </Dialog>
       </RestauranteContainer>
+      <Loading openLoading={openLoading} />
     </ThemeProvider>
   );
 }

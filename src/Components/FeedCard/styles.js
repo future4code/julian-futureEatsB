@@ -25,6 +25,7 @@ export const ContainerImg = styled.div`
   overflow: hidden;
   height: 60%;
 `;
+
 export const StoreName = styled(Typography)`
   height: 18px;
   font-family: Roboto;
