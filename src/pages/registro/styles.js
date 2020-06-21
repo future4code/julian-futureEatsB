@@ -10,10 +10,10 @@ export const Container = styled.div`
     margin-right: auto;
 `
 export const Imagem = styled.img`
-    width: 28.8vw;
+   width: 28.8vw;
     margin: 3.75vh auto 4.375vh auto;
-    width: 28.889vw;
-    height: 9.063vh;
+    width: 104px;
+    height: 58px;
 `
 export const Paragrafo = styled.p`
     display: flex;
