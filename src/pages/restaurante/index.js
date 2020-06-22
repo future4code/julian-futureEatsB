@@ -50,6 +50,7 @@ function Restaurante(props) {
   const [produtos, setProdutos] = useState([]);
   const [openLoading, setOpenLoading] = useState(true)
   const [quantidade, setQuantidade] = useState(0)
+  const [katiguria, setKatiguria] = useState()
 
   useEffect(() => {
     autorização(history);
@@ -78,6 +79,19 @@ function Restaurante(props) {
       setProdutos(Novosprodutos);
     }
   }, [restContexto.produtos.products]);
+
+  useEffect(() => {
+    if (restContexto.produtos.products !== undefined) {
+      const listaKatiguria = restContexto.produtos.products.map((produto) => {
+        return produto.category;})
+        .filter(function (elem, index, self) {
+    return index === self.indexOf(elem); /*Retira os duplicados */
+  } )
+  setKatiguria(listaKatiguria)
+  }
+  }, [restContexto.produtos.products]);
+  
+  console.log("OIA O RESULT: " + katiguria)
 
   const adicionarCarrinho = () => {
     setOpen(false);
@@ -128,49 +142,48 @@ function Restaurante(props) {
           </RestaurantDetailsFrete>
         </DetailsMidContainer>
         <RestaurantDetails>{restContexto.produtos.address}</RestaurantDetails>
-        <SectionText>Principais</SectionText>
-        {produtos === undefined ? (
-          <p>...</p>
-        ) : (
-          produtos
-            .filter((product) => product.category !== "Bebida")
-            .map((produto) => {
-              return (
-                <CartCard
-                  quantidade={
-                    produto.quantidade === 0 ? "" : produto.quantidade
-                  }
-                  foto={produto.photoUrl}
-                  nome={produto.name}
-                  descricao={produto.description}
-                  preco={produto.price.toFixed(2).replace(".", ",")}
-                  tituloBotao={
-                    produto.quantidade === 0 ? "adicionar" : "remover"
-                  }
-                  onClick={() => {
-                    produto.quantidade === 0
-                      ? abreDialog(produto.id)
-                      : removerCarrinho(produto.id);
-                  }}
-                  borda={
-                    produto.quantidade === 0
-                      ? "solid 2px #5cb646"
-                      : "solid 2px #e02020"
-                  }
-                />
-              );
-            })
-        )}
-        <SectionText>Acompanhamentos</SectionText>
-        {restContexto.produtos.products === undefined ? (
-          <p>...</p>
-        ) : (
-          restContexto.produtos.products
-            .filter((product) => product.category === "Bebida")
-            .map((acompanhamentos) => {
-              return <CartCard main={acompanhamentos} />;
-            })
-        )}
+        {katiguria === undefined ? (
+                <p>...</p>
+              ) : (
+                katiguria.map((categorias) => {
+                  return (
+                           <div>
+                             <SectionText>{categorias}</SectionText>
+                             {
+                               produtos
+                               .filter((product) => product.category === categorias)
+                               .map((produto) => {
+                                 return (
+                                   <CartCard
+                                     quantidade={
+                                       produto.quantidade === 0 ? "" : produto.quantidade
+                                     }
+                                     foto={produto.photoUrl}
+                                     nome={produto.name}
+                                     descricao={produto.description}
+                                     preco={produto.price.toFixed(2).replace(".", ",")}
+                                     tituloBotao={
+                                       produto.quantidade === 0 ? "adicionar" : "remover"
+                                     }
+                                     onClick={() => {
+                                       produto.quantidade === 0
+                                         ? abreDialog(produto.id)
+                                         : removerCarrinho(produto.id);
+                                     }}
+                                     borda={
+                                       produto.quantidade === 0
+                                         ? "solid 2px #5cb646"
+                                         : "solid 2px #e02020"
+                                     }
+                                   />
+                                 );
+                               })
+                             }
+                           </div>
+                        )
+                })
+              )
+        }
 
         <Dialog
           open={open}
