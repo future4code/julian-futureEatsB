@@ -86,18 +86,18 @@ const Home = (props) => {
 
   useEffect(() =>{
     pegaAndamentoPedido()
-    
   }, [])
 
 
   useEffect(() => {
-    pegaAndamentoPedido()
-    
     const interval = setInterval(() => {
-
-      if (pedidoAndamento === null ){
-        clearInterval( interval );
-        setPedidoEmAndamento(null)
+      if (pedidoAndamento !== undefined && pedidoAndamento !== null){
+        const Date = Date.now()
+        const DataExp = pedidoAndamento.expiresAt
+        if (Date >= DataExp ){
+          clearInterval( interval );
+          setPedidoEmAndamento(null)
+        }
       }else{
         console.log(pedidoAndamento)
       }
@@ -105,9 +105,6 @@ const Home = (props) => {
     return () => clearInterval(interval);
   }, []);
     
-  const Data = new Date(new Date(1592777753939))
-
-  console.log(Data)
 
   const pegaAndamentoPedido = async (dispatch) => {
     let token = window.localStorage.getItem("token")

@@ -45,6 +45,7 @@ const Carrinho = (props) => {
     console.log("Funcionou Botão");
   };
 
+  /*Calculo do valor da compra - APENAS PRODUTOS, SEM FRETE*/
   const defineValores = () => {
     if (cartContexto.cart.products.length !== 0) {
       setValorFrete(cartContexto.cart.shipping);
@@ -60,8 +61,11 @@ const Carrinho = (props) => {
       }
     }
   };
+/*Calculo do valor da compra - APENAS PRODUTOS, SEM FRETE*/
 
+/*Calculo do valor total da compra - PRODUTOS + FRETE*/
   let totalCarrinho = valorFrete + totalProdutos;
+/*Calculo do valor total da compra - PRODUTOS + FRETE*/
 
   let secaoMostrada;
   if (cartContexto.cart.products.length === 0) {
@@ -76,9 +80,7 @@ const Carrinho = (props) => {
           descricao={produto.description}
           preco={produto.price.toFixed(2).replace(".", ",")}
           tituloBotao={"remover"}
-          onClick={() => {
-            console.log("remover");
-          }}
+          onClick={() => {console.log("Tá faltando remover")}} 
           borda={"solid 2px #e02020"}
         />
       );
