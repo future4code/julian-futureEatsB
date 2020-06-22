@@ -28,6 +28,7 @@ export const SelecionaQtdade = styled(Select)`
 export const RestauranteContainer = styled.div`
   overflow-x: hidden;
   padding: 0 4.444vw;
+  max-width: 99vw;
 `;
 
 export const UpperRestaurantContainer = styled.div`
@@ -41,7 +42,11 @@ export const ContainerImg = styled.div`
   overflow: hidden;
 `;
 export const ResturanteImg = styled.img`
-  object-fit: contain;
+  object-fit: fill;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 `;
 
 export const RestaurantTitle = styled.p`
